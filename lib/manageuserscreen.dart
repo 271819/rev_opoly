@@ -119,7 +119,9 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
                                   IconButton(
                                     icon: const Icon(Icons.delete),
                                     color: Colors.red,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      _deleteuserdialog(userlist[index]['name']);
+                                    },
                                   ),
                                 ],
                               )),
@@ -156,6 +158,99 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
         setState(() {});
         print(userlist);
       }
+    });
+  }
+
+  void _deleteuserdialog(String name) {
+     showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+            Radius.circular(20),
+          )),
+          title: Text("Delete User", style: TextStyle(fontSize: 26)),
+          content: new Container(
+            height: 60,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Delete user "+name+"?",
+                    style: TextStyle(fontSize: 18)),
+              ]
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _deleteUser(name);
+              },
+            ),
+            TextButton(
+                child: Text("Cancel"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _deleteUser(String name) async {
+    pr = ProgressDialog(context,
+        type: ProgressDialogType.Normal, isDismissible: true, showLogs: true);
+    await pr.show();
+     http.post(
+        Uri.parse(
+            "https://javathree99.com/s271819/revopoly/php/delete_user.php"),
+        body: {
+          'name': name,
+        }).then((response) {
+      if (response.body == "success") {
+        Fluttertoast.showToast(
+            msg: "Successful deleted "+name,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 3,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+            
+          _loadUser();
+          pr.hide().then((isHidden) {
+          print(isHidden);
+        });
+      } else {
+        Fluttertoast.showToast(
+            msg: "Failed",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+            pr.hide().then((isHidden) {
+            print(isHidden);
+        });
+      }
+        }
+        );
+  }
+  _loadUser() {
+    http.post(
+        Uri.parse("https://javathree99.com/s271819/revopoly/php/load_user.php"),
+        body: {
+          'name': name,
+        }).then((response) {
+          
+        var jsondata = json.decode(response.body);
+        userlist = jsondata["user"];
+        setState(() {});
+        print(userlist);
     });
   }
 }

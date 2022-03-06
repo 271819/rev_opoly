@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rev_opoly/gamescreen.dart';
 import 'package:rev_opoly/loginscreen.dart';
 import 'package:rev_opoly/profile.dart';
+import 'package:rev_opoly/test.dart';
 import 'package:rev_opoly/user.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,6 +15,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    super.initState();
+    
+  }
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
@@ -78,19 +84,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: _help,
                   ),
                   SizedBox(height: 35),
-                  // MaterialButton(
-                  //   shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(35),
-                  //       side: BorderSide(color: Colors.red, width: 5)),
-                  //   minWidth: 240,
-                  //   height: 55,
-                  //   // color: Colors.black,
-                  //   child: Text(
-                  //     "Score",
-                  //     style: TextStyle(fontSize: 30, color: Colors.white),
-                  //   ),
-                  //   onPressed: _score,
-                  // ),
                 ],
               ),
             ),
@@ -129,9 +122,16 @@ class _HomeScreenState extends State<HomeScreen> {
         });
   }
 
-  void _start() {}
+  void _start() {
+      Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (content) => GameScreen(user: widget.user)));
+  }
 
-  void _score() {}
+  // void _start() {
+  //     Navigator.pushReplacement(context,
+  //                     MaterialPageRoute(builder: (content) => Test()));
+  // }
+
 
   void _logout() {
     showDialog(

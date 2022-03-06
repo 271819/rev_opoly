@@ -1,12 +1,14 @@
+import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:progress_dialog/progress_dialog.dart';
-import 'package:rev_opoly/user.dart';
 
+// ignore: must_be_immutable
 class PictureDetails extends StatefulWidget {
-  const PictureDetails(String picture);
+  String name;
+  PictureDetails(String picture) {
+    this.name = picture;
+  }
+
   @override
   _PictureDetailsState createState() => _PictureDetailsState();
 }
@@ -14,57 +16,56 @@ class PictureDetails extends StatefulWidget {
 class _PictureDetailsState extends State<PictureDetails> {
   String name;
   double screenHeight, screenWidth;
-  List productlist;
-  String _titlecenter = "Loading card...";
+  List cardlist;
   @override
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Material App Bar'),
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(65.0),
+          child: AppBar(
+            title: Text(widget.name.toUpperCase()),
+            backgroundColor: Colors.black,
+          )),
       body: Center(
-        child: Container(
-            child: Column(
-          children: [
-            productlist == null
-                ? Flexible(child: Center(child: Text(_titlecenter)))
-                : Flexible(
-                    child: Center(
-                        child: GridView.count(
-                      crossAxisCount: 2,
-                      childAspectRatio: (screenWidth / screenHeight) / 1.06,
-                      children: List.generate(productlist.length, (index) {
-                        return Padding(
-                            padding: EdgeInsets.all(7),
-                            child: Card(
-                              elevation: 10,
-                              child: InkWell(
-                                  // onTap: () => _loadFoodDetail(index),
-                                  child: Column(
-                                children: [
-                                  // Container(
-                                  //   margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  //   height: screenHeight / 4.1,
-                                  //   width: screenWidth / 1.2,
-                                  //   child: CachedNetworkImage(
-                                  //     imageUrl:
-                                  //         "https://crimsonwebs.com/s271819/organadora/images/products/${productlist[index]['prid']}.jpg",
-                                  //   ),
-                                  // ),
-
-                                  Text("hello"),
-                                  SizedBox(height: 15),
-                                ],
-                              )),
-                            ));
-                      }),
+          child: GridView.count(
+              crossAxisCount: 1,
+              childAspectRatio: (screenWidth / screenHeight) / 0.31,
+              children: [
+            for (int i = 1001; i <= 1016; i++)
+              Padding(
+                  padding: EdgeInsets.all(7),
+                  child: Card(
+                    elevation: 10,
+                    child: InkWell(
+                        onTap: () => _deleteimage(i),
+                        child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          height: screenHeight / 4.1,
+                          width: screenWidth / 1.2,
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                "https://javathree99.com/s271819/revopoly/images/${widget.name}/${i}.png",
+                          ),
+                        ),
+                        // IconButton(
+                        //   icon: const Icon(Icons.delete),
+                        //   color: Colors.red,
+                        //   onPressed: () {
+                        //     _deleteimage(1000+i);
+                        //   },
+                        // ),
+                      ],
                     )),
-                  ),
-          ],
-        )),
-      ),
+                  )),
+          ])),
     );
+  }
+
+  void _deleteimage(int i) {
+
   }
 }

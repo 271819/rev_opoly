@@ -24,8 +24,7 @@ class _PictureCategoryState extends State<PictureCategory> {
           child: GridView.count(
               crossAxisCount: 1,
               childAspectRatio: (screenWidth / screenHeight) / 1.21,
-              children: [
-            Column(
+              
               children: [
                 Column(
                   children: [
@@ -69,8 +68,7 @@ class _PictureCategoryState extends State<PictureCategory> {
                   ],
                 ),
               ],
-            ),
-          ])),
+            )),
     );
   }
 
