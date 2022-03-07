@@ -1024,7 +1024,6 @@ class _GameScreenState extends State<GameScreen> {
       },
     );
   }
-
   void _updatemoney(int updatemoney) {
     print(updatemoney);
     int currentmoney = int.parse(widget.user.money);
