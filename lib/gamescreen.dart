@@ -64,14 +64,16 @@ class _GameScreenState extends State<GameScreen> {
       // irquestion(totalstep);
       // }else if(totalstep==2 || totalstep ==12){
       //   didyouknow(totalstep);
-      // }else if(totalstep==4 || totalstep==23){
-      //  inventor(totalstep);
-      // }else if(totalstep==5){
-
+      // }else if(totalstep==4 ){
+      //  inventor3(totalstep);
+      // }else if(totalstep==23){
+      //  inventor23(totalstep);
+      // }else if(totalstep==5||totalstep==11 || totalstep==13||totalstep==14||totalstep==16 || totalstep==18||totalstep==19||totalstep==20||totalstep==21||totalstep==22||totalstep==24||totalstep==26||totalstep==27 || totalstep==29){
+      //   technologyquestion(totalstep);
       // }else if(totalstep==7 || totalstep==17 || totalstep==28){
       //   chance(totalstep);
       // }
-      inventor(totalstep);
+      irquestion(totalstep);
     } else {
       setState(() {
         leftdice_no = Random().nextInt(6) + 1;
@@ -606,30 +608,25 @@ class _GameScreenState extends State<GameScreen> {
     } else {
       i = 10;
     }
-    // if(totalstep==1){
-    //   updatemoney = -1100;
-    // }else if(totalstep ==3){
-    //   updatemoney = -1200;
-    // }else if(totalstep==6){
-    //   updatemoney = -1300;
-    // }else if(totalstep==8){
-    //   updatemoney = -1400;
-    // }
+
     if (totalstep == 1) {
+      updatemoney = -1100;
       ir = 1.0;
     } else if (totalstep == 3) {
+      updatemoney = -1200;
       ir = 2.0;
     } else if (totalstep == 6) {
+      updatemoney = -1300;
       ir = 3.0;
     } else if (totalstep == 8) {
+      updatemoney = -1400;
       ir = 4.0;
     }
-    // updatemoney=-1100;
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("This Question is for ir ?" + ir.toString(),
+          title: Text("This Question is for ir " + ir.toString(),
               style: TextStyle(fontSize: 22)),
           content: new Container(
             height: 300,
@@ -840,43 +837,43 @@ class _GameScreenState extends State<GameScreen> {
               falseanswer, updatemoney);
         }
       } else if (image == 6||image == 7||image == 8) {
-        if (answer.contains("highly efficient management as interconnected machines.") || answer.contains("impacts the cotton-spinning and weaving mills industry.")||answer.contains("allow it to grow from small organisations to large organisations ")) {
+        if (answer.contains("highly efficient management as interconnected machines.") || answer.contains("can virtually self-manage")||answer.contains("the use of other technologies")) {
           _irmessage("Congratulation. Your answer is correct", trueanswer,
               updatemoney);
         } else {
-          _irmessage("Sorry. You are wrong. The correct answer is it impacts the cotton-spinning and weaving mills inductry, allowing it to grow from small businesses to large organisations serving a high number of demands due to the use of steam engines for power to replace manual work.",
+          _irmessage("Sorry. You are wrong. The correct answer is It shows highly efficient management as interconnected machines can virtually self-manage with the use of other technologies.",
               falseanswer, updatemoney);
         }
       } else if (image == 9||image == 10||image == 11) {
-        if (answer.contains("hello")) {
+        if (answer.contains("internet of things")||answer.contains("cloud technology")||answer.contains("artificial intelligence")) {
           _irmessage("Congratulation. Your answer is correct", trueanswer,
               updatemoney);
         } else {
-          _irmessage("Sorry. You are wrong. The correct answer is ",
+          _irmessage("Sorry. You are wrong. The correct answer is Internet of Things, cloud technnology and artificial intelligence",
               falseanswer, updatemoney);
         }
       } else if (image == 12||image == 13) {
-        if (answer.contains("hello")) {
+        if (answer.contains("process can be completely virtually visualised")||answer.contains("monitored")||answer.contains("managed from a remote location")) {
           _irmessage("Congratulation. Your answer is correct", trueanswer,
               updatemoney);
         } else {
-          _irmessage("Sorry. You are wrong. The correct answer is ",
+          _irmessage("Sorry. You are wrong. The correct answer is The process can be completely virtually visualised, monitored and managed from a remote location",
               falseanswer, updatemoney);
         }
       } else if (image == 14 ||image == 15) {
-        if (answer.contains("hello")) {
+        if (answer.contains("manufacturing industry")||answer.contains("production industry")) {
           _irmessage("Congratulation. Your answer is correct", trueanswer,
               updatemoney);
         } else {
-          _irmessage("Sorry. You are wrong. The correct answer is ",
+          _irmessage("Sorry. You are wrong. The correct answer is The manufacturing industry and production industry",
               falseanswer, updatemoney);
         }
       } else if (image == 16) {
-        if (answer.contains("hello")) {
+        if (answer.contains("create economic growth where more job opportunities are available")||answer.contains("shows reliance on science and technology")) {
           _irmessage("Congratulation. Your answer is correct", trueanswer,
               updatemoney);
         } else {
-          _irmessage("Sorry. You are wrong. The correct answer is ",
+          _irmessage("Sorry. You are wrong. The correct answer is It creates economic growth where more job opportunities are available. It also shows reliance on science and technology.",
               falseanswer, updatemoney);
         }
       }
@@ -885,13 +882,19 @@ class _GameScreenState extends State<GameScreen> {
 
   void _irmessage(String ans, bool noanswer, int updatemoney) {
     print("until here");
+    String title;
+    if( noanswer==true){
+      title = "Congratulation!!!";
+    }else{
+      title = "Oh.. Unfortunately";
+    }
     setState(
       () {
         showDialog(
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Do you know the answer?",
+                title: Text(title,
                     style: TextStyle(fontSize: 22)),
                 content: new Container(
                   height: 300,
@@ -899,7 +902,7 @@ class _GameScreenState extends State<GameScreen> {
                   child: Column(
                     children: [
                       Container(
-                        child: Text(ans),
+                        child: Text(ans,style: TextStyle(fontSize:15)),
                       ),
                     ],
                   ),
@@ -1024,6 +1027,7 @@ class _GameScreenState extends State<GameScreen> {
       },
     );
   }
+  
   void _updatemoney(int updatemoney) {
     print(updatemoney);
     int currentmoney = int.parse(widget.user.money);
@@ -1071,7 +1075,7 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  void inventor(int totalstep) {
+  void inventor3(int totalstep) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -1085,6 +1089,13 @@ class _GameScreenState extends State<GameScreen> {
                 Container(
                   height: 160,
                   width: 340,
+                  decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image:
+                                    AssetImage('assets/images/inventor3.JPG'),
+                                fit: BoxFit.fill,
+                              ),
+                            ),
                 ),
               ],
             ),
@@ -1094,11 +1105,562 @@ class _GameScreenState extends State<GameScreen> {
                 child: Text("OK"),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  // chancemessage(image);
+                  _updatemoney(-2000);
                 }),
           ],
         );
       },
     );
   }
+
+  void inventor23(int totalstep) {
+     showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Your Chance", style: TextStyle(fontSize: 22)),
+          content: new Container(
+            height: 300,
+            width: 450,
+            child: Column(
+              children: [
+                Container(
+                  height: 160,
+                  width: 340,
+                  decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/inventor.JPG'),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _updatemoney(-2000);
+                }),
+          ],
+        );
+      },
+    );
+  }
+
+  void technologyquestion(int totalstep) {
+    TextEditingController _iranswer = new TextEditingController();
+    int image = Random().nextInt(15) + 1;
+    int updatemoney;
+    String technology;
+    int i;
+    if (image < 10) {
+      i = 100;
+    } else {
+      i = 10;
+    }
+
+    if (totalstep == 5) {
+      // technology = "Smart Wearable";
+      updatemoney =-3000;
+    } else if (totalstep == 11) {
+      technology="Cloud Computing";
+      updatemoney =-1380;
+    } else if (totalstep == 13) {
+      // technology = "IoT in Smart Home";
+      updatemoney =-1340;
+    } else if (totalstep == 14) {
+      // technology = "IoT in Smart Grid";
+      updatemoney =-1500;
+    }else if (totalstep == 16) {
+      technology = "Cyber Security";
+      updatemoney =-1500;
+    }else if (totalstep == 18) {
+      technology = "Augmented Reality";
+      updatemoney =-1260;
+    }else if (totalstep == 19) {
+      technology = "Big Data";
+      updatemoney =-1440;
+    }else if (totalstep == 20) {
+      // technology = "Smart City";
+      updatemoney =-3000;
+    }else if (totalstep == 21) {
+      // technology = "IoT in Smart City";
+      updatemoney =-1200;
+    }else if (totalstep == 22) {
+      // technology = "IoT in Retail Market";
+      updatemoney =-1020;
+    }else if (totalstep == 24) {
+      // technology = "IoT in Health Care";
+      updatemoney =-1580;
+    }else if (totalstep == 26) {
+      // technology = "System Integration";
+      updatemoney =-1660;
+    }else if (totalstep == 27) {
+      // technology = "Additive Manufacturing";
+      updatemoney =-1700;
+    }else if (totalstep == 29) {
+      // technology = "IoT in Agriculture";
+      updatemoney =-1240;
+    }
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("This Question is for " + technology.toString(),
+              style: TextStyle(fontSize: 22)),
+          content: new Container(
+            height: 300,
+            width: 450,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    height: 100,
+                    width: 340,
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          "https://javathree99.com/s271819/revopoly/images/technology/$i${image}.png",
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  TextField(
+                    controller: _iranswer,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      labelText: "Answer",
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text("Submit"),
+              onPressed: () {
+                print(_iranswer.text);
+                Navigator.of(context).pop();
+                _technologyAnswer(_iranswer.text.toString(), image, updatemoney, technology);
+              },
+            ),
+            TextButton(
+                child: Text("Cancel"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+          ],
+        );
+      },
+    );
+  }
+
+  void _technologyAnswer(String answer, int image, int updatemoney, String technology) {
+    bool trueanswer = true;
+    bool falseanswer = false;
+    print(answer);
+    print(image);
+    print(updatemoney);
+    if(technology =="Smart Wearable" || technology =="IoT in Health Care"){
+      if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+        if (answer.contains("an electronic device connected to other devices")|| answer.contains("an electronic device generally connected to other devices via wireless protocols")|| answer.contains("an electronic device connected to other devices by using wireless protocols")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is an electronic device generally connected to other devices via wireless protocols",
+              falseanswer, updatemoney);
+        }
+      }else if(image==6 || image ==7){
+        if (answer.contains("smartwatch")|| answer.contains("fitness tracker")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is smartwatch and fitness tracker",
+              falseanswer, updatemoney);
+        }
+      }else if(image==8 || image ==9 || image ==10|| image ==11){
+        if (answer.contains("the trend to stay connected, detect, analyse and transmit information concerning the wearer")|| answer.contains("transmit informatiion concerning the wearer")|| answer.contains("analyse information concerning the wearer")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is The trend to stay connected, detect, analyse and transmit information concerning the wearer",
+              falseanswer, updatemoney);
+        }
+      }else if(image==12 || image ==13||image==14 ||image ==15){
+        if (answer.contains("cost")|| answer.contains("short battery life")|| answer.contains("inaccurate measured data")|| answer.contains("privacy and security")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is The challenges are the cost, short battery life, inaccurate measured data, privacy and security",
+              falseanswer, updatemoney);
+        }
+      }else if(image==16){
+        _technologymessage("Your opinion is correct",
+              trueanswer, updatemoney);
+      }
+    }else if(technology =="Smart Home" || technology =="IoT in Smart Home"){
+      if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+        if (answer.contains("a system that can remotely control connected home appliances")|| answer.contains("remotely control connected home appliances")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is a system that can remotely control connected home appliances",
+              falseanswer, updatemoney);
+        }
+      }else if(image==6 || image ==7){
+        if (answer.contains("smart fridge")|| answer.contains("smart washing machine")|| answer.contains("smart light bulbs")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is smart fridge, smart washing machine and smart light bulbs",
+              falseanswer, updatemoney);
+        }
+      }else if(image==8 || image ==9 || image ==10|| image ==11){
+        if (answer.contains("allows home devices to be managed from one place which is convenient")|| answer.contains("allows home devices to be managed")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is It allows home devices to be managed from one place which is convenient",
+              falseanswer, updatemoney);
+        }
+      }else if(image==12 || image ==13||image==14 ||image ==15){
+        if (answer.contains("cost")|| answer.contains("Internet reliance")|| answer.contains("complex setup and configuration")|| answer.contains("security")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is The challenges are the cost, Internet reliance, complex setup and configuration and security",
+              falseanswer, updatemoney);
+        }
+      }else if(image==16){
+        _technologymessage("Your opinion is correct",
+              trueanswer, updatemoney);
+      }
+    }else if(technology =="Smart City" || technology =="IoT in Smart City"){
+      if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+        if (answer.contains("an urban area that uses connected electronic internet of things to collect data")|| answer.contains("uses connected electronic internet of things to collect data")|| answer.contains("an urban area that uses connected electronic Internet of Things to collect data")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is an urban area that uses connected electronic Internet of Things to collect data",
+              falseanswer, updatemoney);
+        }
+      }else if(image==6 || image ==7){
+        if (answer.contains("smart parking")|| answer.contains("smart traffic control system")|| answer.contains("smart air quality sensors")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is smart parking, smart traffic control systems and smart air quality sensors",
+              falseanswer, updatemoney);
+        }
+      }else if(image==8 || image ==9 || image ==10|| image ==11){
+        if (answer.contains("improves urban planning and the environment")|| answer.contains("improves the environment")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is it improves urban planning and the environment",
+              falseanswer, updatemoney);
+        }
+      }else if(image==12 || image ==13||image==14 ||image ==15){
+        if (answer.contains("cost")|| answer.contains("privacy and security")|| answer.contains("privacy")|| answer.contains("security")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is the cost, privacy and security",
+              falseanswer, updatemoney);
+        }
+      }else if(image==16){
+        _technologymessage("Your opinion is correct",
+              trueanswer, updatemoney);
+      }
+    }else if(technology =="IoT in Smart Grid"){
+      if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+        if (answer.contains("two-way intercharge of electricity and information between power utilities and consumers")|| answer.contains("information between power utilities and consumers")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is the two-way intercharge of electricity and information between power utilities and consumers",
+              falseanswer, updatemoney);
+        }
+      }else if(image==6 || image ==7){
+        if (answer.contains("smart meters")|| answer.contains("smart power generation")|| answer.contains("smart appliances")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is smart meters, smart power generation and smart appliances",
+              falseanswer, updatemoney);
+        }
+      }else if(image==8 || image ==9 || image ==10|| image ==11){
+        if (answer.contains("enables real-time surveillance")|| answer.contains("efficient management of energy supply and demand")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is it enables real-time surveillance and efficient management of energy supply and demand",
+              falseanswer, updatemoney);
+        }
+      }else if(image==12 || image ==13||image==14 ||image ==15){
+        if (answer.contains("internet reliance")|| answer.contains("network congestion during emergency situations")|| answer.contains("security of smart devices")|| answer.contains("cost to install smart devices")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is the challenges are in terms of Internet reliance, network congestion during emergency situations, security of smart devices and cost to install smart devices",
+              falseanswer, updatemoney);
+        }
+      }else if(image==16){
+        _technologymessage("Your opinion is correct",
+              trueanswer, updatemoney);
+      }
+    }else if(technology =="IoT in Retail Market"){
+      if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+        if (answer.contains("use of technologies to enhance store operation")|| answer.contains("improve the shopping experience of the customer")|| answer.contains("accelerate inventory management")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is the use of technologies to enhance store operation, improve the shopping experience of the customers and accelerate inventory management",
+              falseanswer, updatemoney);
+        }
+      }else if(image==6 || image ==7){
+        if (answer.contains("smart payment system")|| answer.contains("smart labels")|| answer.contains("intelligent vending machines")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is smart payment system, smart labels and intelligent vending machines",
+              falseanswer, updatemoney);
+        }
+      }else if(image==8 || image ==9 || image ==10|| image ==11){
+        if (answer.contains("leads to a decentralised")|| answer.contains("transparent")|| answer.contains("optimised sales process for retailers")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is it leads to a decentralised, transparent and optimised sales process for retailers",
+              falseanswer, updatemoney);
+        }
+      }else if(image==12 || image ==13||image==14 ||image ==15){
+        if (answer.contains("cost")|| answer.contains("privacy")|| answer.contains("security")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is the cost, privacy and security",
+              falseanswer, updatemoney);
+        }
+      }else if(image==16){
+        _technologymessage("Your opinion is correct",
+              trueanswer, updatemoney);
+      }
+    }else if(technology =="IoT in Agriculture"){
+      if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+        if (answer.contains("use of technologies that includes the internet of things, sensors, drones and robots on the farm")|| answer.contains("inernets of things, sensors, drones and robots")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is the use of technologies that includes the Internet of Things, sensors, drones and robots on the farm",
+              falseanswer, updatemoney);
+        }
+      }else if(image==6 || image ==7){
+        if (answer.contains("agricultural drones")|| answer.contains("smart climate monitoring")|| answer.contains("smart greenhouse automation")|| answer.contains("smart crop management")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is agricultural drones, smart climate monitoring, smart greenhouse automation and smart crop management",
+              falseanswer, updatemoney);
+        }
+      }else if(image==8 || image ==9 || image ==10|| image ==11){
+        if (answer.contains("makes every espect of farming more reliable")|| answer.contains("predictable")|| answer.contains("sustainable")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is it makes every aspect of farming more reliable, predictable and sustainable",
+              falseanswer, updatemoney);
+        }
+      }else if(image==12 || image ==13||image==14 ||image ==15){
+        if (answer.contains("in the connectivity in rural areas")|| answer.contains("big data monitoring")|| answer.contains("learning curve with the concept of smart farming and security")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer are in the connectivity in rural areas, big data monitoring, learning curve with the concept of smart farming and security.",
+              falseanswer, updatemoney);
+        }
+      }else if(image==16){
+        _technologymessage("Your opinion is correct",
+              trueanswer, updatemoney);
+      }
+    }else if(technology =="Cloud Computing"){
+      if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+        if (answer.contains("on-demand availability of computer system resources over the internet")|| answer.contains("on-demand availability of computer system")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is the on-demand availability of computer system resources over the Internet",
+              falseanswer, updatemoney);
+        }
+      }else if(image==6 || image ==7){
+        if (answer.contains("file storage")|| answer.contains("sharing system")|| answer.contains("online software")|| answer.contains("online operating system")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is file storage and sharing system, online software and online operating system",
+              falseanswer, updatemoney);
+        }
+      }else if(image==8 || image ==9 || image ==10|| image ==11){
+        if (answer.contains("faster retrievals of applications data")|| answer.contains("more accurate retrievals of applications and data")|| answer.contains("enables faster and more accurate retrievals of applications and data")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is it enables faster and more accurate retrievals of applications and data",
+              falseanswer, updatemoney);
+        }
+      }else if(image==12 || image ==13||image==14 ||image ==15){
+        if (answer.contains("cost")|| answer.contains("internet reliance")|| answer.contains("storage capacity")|| answer.contains("security")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer are the cost, Internet reliance, storage capacity and security",
+              falseanswer, updatemoney);
+        }
+      }else if(image==16){
+        _technologymessage("Your opinion is correct",
+              trueanswer, updatemoney);
+      }
+    }else if(technology =="Cyber Security"){
+      // if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+      //   if (answer.contains("two-way intercharge of electricity and information between power utilities and consumers")|| answer.contains("information between power utilities and consumers")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is the two-way intercharge of electricity and information between power utilities and consumers",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==6 || image ==7){
+      //   if (answer.contains("smart meters")|| answer.contains("smart power generation")|| answer.contains("smart appliances")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is smart meters, smart power generation and smart appliances",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==8 || image ==9 || image ==10|| image ==11){
+      //   if (answer.contains("enables real-time surveillance")|| answer.contains("efficient management of energy supply and demand")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is it enables real-time surveillance and efficient management of energy supply and demand",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==12 || image ==13||image==14 ||image ==15){
+      //   if (answer.contains("internet reliance")|| answer.contains("network congestion during emergency situations")|| answer.contains("security of smart devices")|| answer.contains("cost to install smart devices")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is the challenges are in terms of Internet reliance, network congestion during emergency situations, security of smart devices and cost to install smart devices",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==16){
+      //   _technologymessage("Your opinion is correct",
+      //         trueanswer, updatemoney);
+      // }
+    }else if(technology =="Augmented Reality"){
+      // if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+      //   if (answer.contains("two-way intercharge of electricity and information between power utilities and consumers")|| answer.contains("information between power utilities and consumers")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is the two-way intercharge of electricity and information between power utilities and consumers",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==6 || image ==7){
+      //   if (answer.contains("smart meters")|| answer.contains("smart power generation")|| answer.contains("smart appliances")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is smart meters, smart power generation and smart appliances",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==8 || image ==9 || image ==10|| image ==11){
+      //   if (answer.contains("enables real-time surveillance")|| answer.contains("efficient management of energy supply and demand")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is it enables real-time surveillance and efficient management of energy supply and demand",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==12 || image ==13||image==14 ||image ==15){
+      //   if (answer.contains("internet reliance")|| answer.contains("network congestion during emergency situations")|| answer.contains("security of smart devices")|| answer.contains("cost to install smart devices")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is the challenges are in terms of Internet reliance, network congestion during emergency situations, security of smart devices and cost to install smart devices",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==16){
+      //   _technologymessage("Your opinion is correct",
+      //         trueanswer, updatemoney);
+      // }
+    }else if(technology =="Big Data"){
+      // if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+      //   if (answer.contains("two-way intercharge of electricity and information between power utilities and consumers")|| answer.contains("information between power utilities and consumers")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is the two-way intercharge of electricity and information between power utilities and consumers",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==6 || image ==7){
+      //   if (answer.contains("smart meters")|| answer.contains("smart power generation")|| answer.contains("smart appliances")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is smart meters, smart power generation and smart appliances",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==8 || image ==9 || image ==10|| image ==11){
+      //   if (answer.contains("enables real-time surveillance")|| answer.contains("efficient management of energy supply and demand")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is it enables real-time surveillance and efficient management of energy supply and demand",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==12 || image ==13||image==14 ||image ==15){
+      //   if (answer.contains("internet reliance")|| answer.contains("network congestion during emergency situations")|| answer.contains("security of smart devices")|| answer.contains("cost to install smart devices")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is the challenges are in terms of Internet reliance, network congestion during emergency situations, security of smart devices and cost to install smart devices",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==16){
+      //   _technologymessage("Your opinion is correct",
+      //         trueanswer, updatemoney);
+      // }
+    }else if(technology =="System Integration"){
+      // if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+      //   if (answer.contains("two-way intercharge of electricity and information between power utilities and consumers")|| answer.contains("information between power utilities and consumers")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is the two-way intercharge of electricity and information between power utilities and consumers",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==6 || image ==7){
+      //   if (answer.contains("smart meters")|| answer.contains("smart power generation")|| answer.contains("smart appliances")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is smart meters, smart power generation and smart appliances",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==8 || image ==9 || image ==10|| image ==11){
+      //   if (answer.contains("enables real-time surveillance")|| answer.contains("efficient management of energy supply and demand")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is it enables real-time surveillance and efficient management of energy supply and demand",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==12 || image ==13||image==14 ||image ==15){
+      //   if (answer.contains("internet reliance")|| answer.contains("network congestion during emergency situations")|| answer.contains("security of smart devices")|| answer.contains("cost to install smart devices")){
+      //     _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+      //   } else {
+      //     _technologymessage("Sorry. You are wrong. The correct answer is the challenges are in terms of Internet reliance, network congestion during emergency situations, security of smart devices and cost to install smart devices",
+      //         falseanswer, updatemoney);
+      //   }
+      // }else if(image==16){
+      //   _technologymessage("Your opinion is correct",
+      //         trueanswer, updatemoney);
+      // }
+    }else if(technology =="Additive Manufacturing"){
+      if(image==1 || image ==2 || image ==3|| image ==4 || image ==5){
+        if (answer.contains("two-way intercharge of electricity and information between power utilities and consumers")|| answer.contains("information between power utilities and consumers")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is "+technology+" is the two-way intercharge of electricity and information between power utilities and consumers",
+              falseanswer, updatemoney);
+        }
+      }else if(image==6 || image ==7){
+        if (answer.contains("smart meters")|| answer.contains("smart power generation")|| answer.contains("smart appliances")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is smart meters, smart power generation and smart appliances",
+              falseanswer, updatemoney);
+        }
+      }else if(image==8 || image ==9 || image ==10|| image ==11){
+        if (answer.contains("enables real-time surveillance")|| answer.contains("efficient management of energy supply and demand")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is it enables real-time surveillance and efficient management of energy supply and demand",
+              falseanswer, updatemoney);
+        }
+      }else if(image==12 || image ==13||image==14 ||image ==15){
+        if (answer.contains("internet reliance")|| answer.contains("network congestion during emergency situations")|| answer.contains("security of smart devices")|| answer.contains("cost to install smart devices")){
+          _technologymessage("Congratulation. Your answer is correct", trueanswer,updatemoney);
+        } else {
+          _technologymessage("Sorry. You are wrong. The correct answer is the challenges are in terms of Internet reliance, network congestion during emergency situations, security of smart devices and cost to install smart devices",
+              falseanswer, updatemoney);
+        }
+      }else if(image==16){
+        _technologymessage("Your opinion is correct",
+              trueanswer, updatemoney);
+      }
+    }
+  }
+
+  void _technologymessage(String ans, bool noanswer, int updatemoney) {}
 }
