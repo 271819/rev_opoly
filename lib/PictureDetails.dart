@@ -51,6 +51,7 @@ class _PictureDetailsState extends State<PictureDetails> {
                                 "https://javathree99.com/s271819/revopoly/images/${widget.name}/${i}.png",
                           ),
                         ),
+                        
                         // IconButton(
                         //   icon: const Icon(Icons.delete),
                         //   color: Colors.red,
