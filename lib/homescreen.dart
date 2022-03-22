@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rev_opoly/gamescreen.dart';
 import 'package:rev_opoly/loginscreen.dart';
 import 'package:rev_opoly/profile.dart';
-import 'package:rev_opoly/test.dart';
 import 'package:rev_opoly/user.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -126,13 +126,6 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (content) => GameScreen(user: widget.user)));
   }
-
-  // void _start() {
-  //     Navigator.pushReplacement(context,
-  //                     MaterialPageRoute(builder: (content) => Test()));
-  // }
-
-
   void _logout() {
     showDialog(
         context: context,

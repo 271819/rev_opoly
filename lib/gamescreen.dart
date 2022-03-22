@@ -1,6 +1,4 @@
-import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
@@ -175,8 +173,9 @@ class _GameScreenState extends State<GameScreen> {
   }
   @override
   void initState() {
-    super.initState();
     _loadbotdetails();
+    super.initState();
+    
   }
   @override
   Widget build(BuildContext context) {
@@ -1345,11 +1344,13 @@ class _GameScreenState extends State<GameScreen> {
       //bot turn
       if (noanswer == true) {
         //player answer correctly
+        whoturn = true;
         _updatescore();
         _updatemoney(updatemoney);
         _updatebotmoney(-100);
         _updatetechnology(whoturn, text);
       } else {
+        
         _updatebotscore();
         _updatemoney(-100);
         _updatebotmoney(updatemoney);
@@ -1620,7 +1621,7 @@ class _GameScreenState extends State<GameScreen> {
               children: [
                 Container(
                   height: 160,
-                  width: 340,
+                  width: 250,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/images/inventor3.JPG'),
@@ -1661,7 +1662,7 @@ class _GameScreenState extends State<GameScreen> {
               children: [
                 Container(
                   height: 160,
-                  width: 340,
+                  width: 250,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/images/inventor.JPG'),
@@ -2723,6 +2724,8 @@ class _GameScreenState extends State<GameScreen> {
       print(response.body);
       if (response.body == "success") {
         setState(() {});
+        _loadbottechnology();
+        _loadplayertechnology();
       }
     });
   }
@@ -2748,7 +2751,9 @@ void _loadbotdetails() {
   }
 
   void _bottechnology() {
+
     _loadbottechnology();
+    
      showDialog(
       
       context: context,
@@ -2836,8 +2841,7 @@ void _loadbotdetails() {
         }).then((response) {
       if (response.body == "nodata") {
         return;
-      }else {
-        
+      }else {        
       setState(() {
         var jsondata = json.decode(response.body);
         bottechnology = jsondata["bottechnology"];
@@ -2890,18 +2894,22 @@ void _loadbotdetails() {
                 child: Text("No"),
                 onPressed: () {
                   _resetgame();
-                Navigator.push(
-                    context,
+                   Navigator.push( context,
                     MaterialPageRoute(builder: (content) =>HomeScreen(user: widget.user)));
-                //   SystemChrome.setPreferredOrientations([
-                //                     DeviceOrientation.portraitUp,
-                //                     DeviceOrientation.portraitUp
-                //                   ]);
+                SystemChrome.setPreferredOrientations([
+                                    DeviceOrientation.portraitUp,
+                                    DeviceOrientation.portraitUp
+                                  ]);
                 }),
             TextButton(
                 child: Text("Yes"),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.push( context,
+                    MaterialPageRoute(builder: (content) =>HomeScreen(user: widget.user)));
+                SystemChrome.setPreferredOrientations([
+                                    DeviceOrientation.portraitUp,
+                                    DeviceOrientation.portraitUp
+                                  ]);
                 }),
                  
           ],
@@ -2917,9 +2925,8 @@ void _loadbotdetails() {
             body: {
               "email": widget.user.email,
             }).then((response) {
-          
-          setState(() { });
-          
+                widget.user.score ="0";
+                widget.user.money = "15000";
         });
   }
 
