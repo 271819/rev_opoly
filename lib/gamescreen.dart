@@ -35,6 +35,7 @@ class _GameScreenState extends State<GameScreen> {
   double botboxwidth = 63, botboxheight = 47;
   bool whoturn = true;
   List botdetails;
+  List bottechnology,playertechnology;
   void dice() {
     if (playerturn == true) {
       setState(() {
@@ -174,8 +175,8 @@ class _GameScreenState extends State<GameScreen> {
   }
   @override
   void initState() {
-    _loadbotdetails();
     super.initState();
+    _loadbotdetails();
   }
   @override
   Widget build(BuildContext context) {
@@ -207,28 +208,28 @@ class _GameScreenState extends State<GameScreen> {
                                   Icons.arrow_back,
                                 ),
                                 onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (content) =>
-                                              HomeScreen(user: widget.user)));
-                                  SystemChrome.setPreferredOrientations([
-                                    DeviceOrientation.portraitUp,
-                                    DeviceOrientation.portraitUp
-                                  ]);
+                                  _backbutton();
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(builder: (content) =>HomeScreen(user: widget.user)));
+                                  // SystemChrome.setPreferredOrientations([
+                                  //   DeviceOrientation.portraitUp,
+                                  //   DeviceOrientation.portraitUp
+                                  // ]);
                                 },
                               ),
                             ),
                           ),
+                          InkWell(
+                              child: Row(
+                                children: [
                           Container(
                               width: 80,
                               child: Text(widget.user.name.toUpperCase(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ))),
-                          InkWell(
-                              child: Row(
-                                children: [
+                          
                                   Container(
                                       width: 85,
                                       child: Text("Score: " + widget.user.score,
@@ -243,7 +244,9 @@ class _GameScreenState extends State<GameScreen> {
                                           ))),
                                 ],
                               ),
-                              onTap: () {}),
+                              onTap: () {
+                                _playertechnology();
+                              }),
                           Container(
                               width: 70,
                               child: Text("VS",
@@ -285,7 +288,9 @@ class _GameScreenState extends State<GameScreen> {
                                 ],
                              );
                             }),),
-                              onTap: () {}
+                              onTap: () {
+                                _bottechnology();
+                              }
                               ),
 
                         ],
@@ -1360,7 +1365,7 @@ class _GameScreenState extends State<GameScreen> {
             "https://javathree99.com/s271819/revopoly/php/update_score.php"),
         body: {
           "email": widget.user.email,
-          "score": widget.user.score,
+          "score": widget.user.score.toString(),
         }).then((response) {
       print(response.body);
       if (response.body == "success") {
@@ -1793,8 +1798,6 @@ class _GameScreenState extends State<GameScreen> {
           ],
           
             backgroundColor: Colors.grey,
-          
-          
         );
       },
     );}else{
@@ -2744,7 +2747,180 @@ void _loadbotdetails() {
     });
   }
 
-  
+  void _bottechnology() {
+    _loadbottechnology();
+     showDialog(
+      
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Bot Technology" ,
+              style: TextStyle(fontSize: 22)),
+          content: new Container(
+            height: 300,
+            width: 200,
+            child: SingleChildScrollView(
+              child: Column(
+                children:List.generate(bottechnology.length, (index) {
+                return Row(
+                children: [
+                  Container(
+                    child:Text( bottechnology[index]["bottechnology"],
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                  ),
+                ],
+              );}))
+            ),
+          ),
+          actions: [
+            TextButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+          ],
+        );
+      },
+    );
 
+
+  }
+
+  void _playertechnology() {
+    _loadplayertechnology();
+     showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Player Technology" ,
+              style: TextStyle(fontSize: 22)),
+          content: new Container(
+            height: 300,
+            width: 200,
+            child: SingleChildScrollView(
+              child: Column(
+                children:List.generate(playertechnology.length, (index) {
+                return Row(
+                children: [
+                  Container(
+                   child: Text(playertechnology[index]["playertechnology"],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      )),
+                  ),
+                ],
+              );}))
+            ),
+          ),
+          actions: [
+            
+            TextButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+          ],
+        );
+      },
+    );
+  }
+
+  void _loadbottechnology() {
+    http.post(
+        Uri.parse(
+            "https://javathree99.com/s271819/revopoly/php/load_bottechnology.php"),
+        body: {
+          "email": widget.user.email,
+        }).then((response) {
+      if (response.body == "nodata") {
+        return;
+      }else {
+        
+      setState(() {
+        var jsondata = json.decode(response.body);
+        bottechnology = jsondata["bottechnology"];
+        print(response.body);
+      });
+      }
+    });
+  }
+
+  void _loadplayertechnology() {
+    http.post(
+        Uri.parse(
+            "https://javathree99.com/s271819/revopoly/php/load_playertechnology.php"),
+        body: {
+          "email": widget.user.email,
+        }).then((response) {
+      if (response.body == "nodata") {
+        // print("helloasdf");
+        return;
+      }else {
+        
+      setState(() {
+        var jsondata = json.decode(response.body);
+        playertechnology = jsondata["playertechnology"];
+        print(response.body);
+      });
+      }
+    });
+  }
+
+  void _backbutton() {
+     showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Exit the game", style: TextStyle(fontSize: 22)),
+                content: new Container(
+                  height: 300,
+                  width: 450,
+                  child: Column(
+                    children: [
+                      Container(
+                        child: Text("Do you want to save the game?", style: TextStyle(fontSize: 25)),
+                      ),
+                    ],
+                  ),
+                ),
+                 actions: [
+            TextButton(
+                child: Text("No"),
+                onPressed: () {
+                  _resetgame();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (content) =>HomeScreen(user: widget.user)));
+                //   SystemChrome.setPreferredOrientations([
+                //                     DeviceOrientation.portraitUp,
+                //                     DeviceOrientation.portraitUp
+                //                   ]);
+                }),
+            TextButton(
+                child: Text("Yes"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+                 
+          ],
+        );
+    });
+        
+  }
+
+  void _resetgame() {
+    http.post(
+            Uri.parse(
+                "https://javathree99.com/s271819/revopoly/php/reset_game.php"),
+            body: {
+              "email": widget.user.email,
+            }).then((response) {
+          
+          setState(() { });
+          
+        });
+  }
 
 }
