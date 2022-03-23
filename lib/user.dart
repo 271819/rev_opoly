@@ -10,5 +10,5 @@ class User{
       this.money,
       this.phone,
     }
-  );
+  ); 
 }

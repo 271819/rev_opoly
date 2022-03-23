@@ -62,7 +62,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
                 : Flexible(
                     child: Center(
                         child: GridView.count(
-                      crossAxisCount: 1,
+                      crossAxisCount: 1, 
                       childAspectRatio: (screenWidth / screenHeight) / 0.35,
                       children: List.generate(userlist.length, (index) {
                         return Padding(

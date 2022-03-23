@@ -272,7 +272,7 @@ class _ProfileState extends State<Profile> {
         pr.hide().then((isHidden) {
           print(isHidden);
         });
-      } else {
+      } else { 
         Fluttertoast.showToast(
             msg: "Failed",
             toastLength: Toast.LENGTH_SHORT,

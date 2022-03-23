@@ -54,7 +54,7 @@ class _PictureCategoryState extends State<PictureCategory> {
                         onTap:()=>_technology(),
                           child: Image.asset('assets/images/3000.png',
                               scale: 0.5)),
-                    ),
+                    ), 
                     Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.black)),

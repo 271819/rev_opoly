@@ -2737,6 +2737,7 @@ void _loadbotdetails() {
         body: {
           "email": widget.user.email,
         }).then((response) {
+          print(response.body);
       if (response.body == "nodata") {
         return;
       }else {
@@ -2754,32 +2755,36 @@ void _loadbotdetails() {
 
     _loadbottechnology();
     
-     showDialog(
-      
+      showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Bot Technology" ,
               style: TextStyle(fontSize: 22)),
           content: new Container(
-            height: 300,
-            width: 200,
+            height: 250,
+            width: 100,
             child: SingleChildScrollView(
-              child: Column(
-                children:List.generate(bottechnology.length, (index) {
-                return Row(
+              child: Row(
                 children: [
-                  Container(
-                    child:Text( bottechnology[index]["bottechnology"],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                  ),
-                ],
-              );}))
-            ),
-          ),
+                  bottechnology == null
+                      ? Flexible(child: Center(child: Text("No technology Found")))
+                      : Flexible(
+                        child:Column(
+                children:List.generate(bottechnology.length, (index) {
+                return Container(
+                   child: Text(bottechnology[index]["bottechnology"],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ))
+                  );
+              }
+              )
+             ))
+                ]),
+          ),),
           actions: [
+            
             TextButton(
                 child: Text("OK"),
                 onPressed: () {
@@ -2802,23 +2807,27 @@ void _loadbotdetails() {
           title: Text("Player Technology" ,
               style: TextStyle(fontSize: 22)),
           content: new Container(
-            height: 300,
-            width: 200,
+            height: 250,
+            width: 100,
             child: SingleChildScrollView(
-              child: Column(
-                children:List.generate(playertechnology.length, (index) {
-                return Row(
+              child: Row(
                 children: [
-                  Container(
+                  playertechnology == null
+                      ? Flexible(child: Center(child: Text("No technology Found")))
+                      : Flexible(
+                        child:Column(
+                children:List.generate(playertechnology.length, (index) {
+                return Container(
                    child: Text(playertechnology[index]["playertechnology"],
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                      )),
-                  ),
-                ],
-              );}))
-            ),
-          ),
+                      ))
+                  );
+              }
+              )
+             ))
+                ]),
+          ),),
           actions: [
             
             TextButton(
@@ -2880,7 +2889,7 @@ void _loadbotdetails() {
                 title: Text("Exit the game", style: TextStyle(fontSize: 22)),
                 content: new Container(
                   height: 300,
-                  width: 450,
+                  width: 250,
                   child: Column(
                     children: [
                       Container(

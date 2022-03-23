@@ -18,7 +18,7 @@ class _AdminScreenState extends State<AdminScreen> {
       home: Scaffold(
         body: Center(
           child: SingleChildScrollView(
-            child: Column(
+            child: Column( 
               children: [
                 Container(
                 margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
