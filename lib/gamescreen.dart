@@ -174,6 +174,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     _loadbotdetails();
+    _endgame();
     super.initState();
     
   }
@@ -748,28 +749,31 @@ class _GameScreenState extends State<GameScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("This Question is for " + text,
-              style: TextStyle(fontSize: 22)),
-          content: new Container(
-            height: 300,
-            width: 450,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    height: 100,
-                    width: 340,
-                    child: CachedNetworkImage(
-                      imageUrl:
+            title: Text("This Question is for " + text,
+                style: TextStyle(fontSize: 22)),
+            scrollable:true,
+            content: new Container(
+              // height: 30,
+              width: 450,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 210,
+                      width: 340,
+                      child: CachedNetworkImage(
+                        imageUrl:
                           "https://javathree99.com/s271819/revopoly/images/ir_question/$i${image}.png",
                       fit: BoxFit.fill,
                     ),
                   ),
-                  TextField(
-                    controller: _iranswer,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      labelText: "Answer",
+                  SingleChildScrollView(
+                    child: TextField(
+                      controller: _iranswer,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        labelText: "Answer",
+                      ),
                     ),
                   ),
                 ],
@@ -799,22 +803,23 @@ class _GameScreenState extends State<GameScreen> {
     );
   }else{
  showDialog(
-      context: context,
+       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("This Question is for " + text,
-              style: TextStyle(fontSize: 22)),
-          content: new Container(
-            height: 300,
-            width: 450,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    height: 100,
-                    width: 340,
-                    child: CachedNetworkImage(
-                      imageUrl:
+            title: Text("This Question is for " + text,
+                style: TextStyle(fontSize: 22)),
+            scrollable:true,
+            content: new Container(
+              // height: 30,
+              width: 450,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 210,
+                      width: 340,
+                      child: CachedNetworkImage(
+                        imageUrl:
                           "https://javathree99.com/s271819/revopoly/images/ir_question/$i${image}.png",
                       fit: BoxFit.fill,
                     ),
@@ -1306,14 +1311,14 @@ class _GameScreenState extends State<GameScreen> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text(title, style: TextStyle(fontSize: 22)),
+                title: Text(title, style: TextStyle(fontSize: 30)),
                 content: new Container(
                   height: 300,
                   width: 450,
                   child: Column(
                     children: [
                       Container(
-                        child: Text(ans, style: TextStyle(fontSize: 15)),
+                        child: Text(ans, style: TextStyle(fontSize: 23)),
                       ),
                     ],
                   ),
@@ -1520,6 +1525,9 @@ class _GameScreenState extends State<GameScreen> {
         setState(() {
           widget.user.money = updated.toString();
         });
+        if(int.parse(widget.user.money)<=0){
+          _endgame();
+        }
       }
     });
   }
@@ -1538,6 +1546,10 @@ class _GameScreenState extends State<GameScreen> {
       if (response.body == "success") {
         _loadbotdetails();
       }
+      if(int.parse(botdetails[0]['money'])<=0){
+        print("<0");
+          _endgame();
+        }
     });
   }
 
@@ -1621,7 +1633,7 @@ class _GameScreenState extends State<GameScreen> {
               children: [
                 Container(
                   height: 160,
-                  width: 250,
+                  width: 200,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/images/inventor3.JPG'),
@@ -1662,7 +1674,7 @@ class _GameScreenState extends State<GameScreen> {
               children: [
                 Container(
                   height: 160,
-                  width: 250,
+                  width: 200,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/images/inventor.JPG'),
@@ -1752,53 +1764,56 @@ class _GameScreenState extends State<GameScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("This Question is for " + technology.toString(),
-              style: TextStyle(fontSize: 22)),
-          content: new Container(
-            height: 300,
-            width: 450,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    height: 100,
-                    width: 340,
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          "https://javathree99.com/s271819/revopoly/images/technology/$i${image}.png",
-                      fit: BoxFit.fill,
+            title: Text("This Question is for " + technology.toString(),
+                style: TextStyle(fontSize: 22)),
+            scrollable:true,
+            content: new Container(
+              // height: 30,
+              width: 450,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 210,
+                      width: 340,
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "https://javathree99.com/s271819/revopoly/images/technology/$i${image}.png",
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                  ),
-                  TextField(
-                    controller: _iranswer,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      labelText: "Answer",
+                    TextField(
+                      controller: _iranswer,
+                      
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        labelText: "Answer",
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          actions: [
-            TextButton(
-              child: Text("Submit"),
-              onPressed: () {
-                print(_iranswer.text);
-                Navigator.of(context).pop();
-                _technologyAnswer(_iranswer.text.toString(), image, updatemoney,
-                    technology, whoturn);
-              },
-            ),
-            TextButton(
-                child: Text("Cancel"),
+            actions: [
+              TextButton(
+                child: Text("Submit"),
                 onPressed: () {
+                  print(_iranswer.text);
                   Navigator.of(context).pop();
-                  _updatemoney(-100);
-                }),
-          ],
+                  _technologyAnswer(_iranswer.text.toString(), image, updatemoney,
+                      technology, whoturn);
+                },
+              ),
+              TextButton(
+                  child: Text("Cancel"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    _updatemoney(-100);
+                  }),
+            ],
+            
+              backgroundColor: Colors.grey,
           
-            backgroundColor: Colors.grey,
         );
       },
     );}else{
@@ -1807,19 +1822,20 @@ class _GameScreenState extends State<GameScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("This Question is for " + technology.toString(),
-              style: TextStyle(fontSize: 22)),
-          content: new Container(
-            height: 300,
-            width: 450,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    height: 100,
-                    width: 340,
-                    child: CachedNetworkImage(
-                      imageUrl:
+            title: Text("This Question is for " + technology.toString(),
+                style: TextStyle(fontSize: 22)),
+            scrollable:true,
+            content: new Container(
+              // height: 30,
+              width: 450,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 210,
+                      width: 340,
+                      child: CachedNetworkImage(
+                        imageUrl:
                           "https://javathree99.com/s271819/revopoly/images/technology/$i${image}.png",
                       fit: BoxFit.fill,
                     ),
@@ -2656,14 +2672,14 @@ class _GameScreenState extends State<GameScreen> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text(title, style: TextStyle(fontSize: 22)),
+                title: Text(title, style: TextStyle(fontSize: 30)),
                 content: new Container(
                   height: 300,
                   width: 450,
                   child: Column(
                     children: [
                       Container(
-                        child: Text(ans, style: TextStyle(fontSize: 25)),
+                        child: Text(ans, style: TextStyle(fontSize: 23)),
                       ),
                     ],
                   ),
@@ -2937,6 +2953,81 @@ void _loadbotdetails() {
                 widget.user.score ="0";
                 widget.user.money = "15000";
         });
+  }
+
+  void _endgame() {
+    setState(
+      () {
+     showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Game Over", style: TextStyle(fontSize: 22)),
+               content: new Container(
+            height: 250,
+            width: 450,
+            child: SingleChildScrollView(
+              child: Row(
+                children: [
+                  playertechnology == null
+                      ? Flexible(child: Center(child: Text("No technology Found")))
+                      : Flexible(
+                        child:Column(
+                children:List.generate(playertechnology.length, (index) {
+                return Container(
+                   child: Text(playertechnology[index]["playertechnology"],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ))
+                  );
+              }
+              )
+             )),
+             bottechnology == null
+                      ? Flexible(child: Center(child: Text("No technology Found")))
+                      : Flexible(
+                        child:Column(
+                children:List.generate(bottechnology.length, (index) {
+                return Container(
+                   child: Text(bottechnology[index]["bottechnology"],
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ))
+                  );
+              }
+              )
+             ))
+                ]
+                
+                ),
+          ),
+          ),
+                 actions: [
+            TextButton(
+                child: Text("No"),
+                onPressed: () {
+                  _resetgame();
+                   Navigator.push( context,
+                    MaterialPageRoute(builder: (content) =>HomeScreen(user: widget.user)));
+                SystemChrome.setPreferredOrientations([
+                                    DeviceOrientation.portraitUp,
+                                    DeviceOrientation.portraitUp
+                                  ]);
+                }),
+            TextButton(
+                child: Text("Yes"),
+                onPressed: () {
+                  Navigator.push( context,
+                    MaterialPageRoute(builder: (content) =>HomeScreen(user: widget.user)));
+                SystemChrome.setPreferredOrientations([
+                                    DeviceOrientation.portraitUp,
+                                    DeviceOrientation.portraitUp
+                                  ]);
+                }),
+                 
+          ],
+        );
+    });});
   }
 
 }
