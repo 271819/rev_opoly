@@ -17,7 +17,7 @@ class GameScreen extends StatefulWidget {
   static double botboxwidth = 63, botboxheight = 47;
   static bool playerturn = true;
   static bool botturn = false;
-  const GameScreen({Key key, this.user,this.bot}) : super(key: key);
+  const GameScreen({Key key, this.user, this.bot}) : super(key: key);
   @override
   _GameScreenState createState() => _GameScreenState();
 }
@@ -33,7 +33,7 @@ class _GameScreenState extends State<GameScreen> {
   double botboxwidth = 63, botboxheight = 47;
   bool whoturn = true;
   List botdetails;
-  List bottechnology,playertechnology;
+  List bottechnology, playertechnology;
   void dice() {
     if (playerturn == true) {
       setState(() {
@@ -96,8 +96,8 @@ class _GameScreenState extends State<GameScreen> {
           totalstep == 24 ||
           totalstep == 26 ||
           totalstep == 27 ||
-          totalstep == 29) 
-          {technologyquestion(totalstep, whoturn);
+          totalstep == 29) {
+        technologyquestion(totalstep, whoturn);
       } else if (totalstep == 7 || totalstep == 17 || totalstep == 28) {
         chance(totalstep, whoturn);
       }
@@ -171,13 +171,13 @@ class _GameScreenState extends State<GameScreen> {
       }
     }
   }
+
   @override
   void initState() {
     _loadbotdetails();
-    _endgame();
     super.initState();
-    
   }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
@@ -209,13 +209,6 @@ class _GameScreenState extends State<GameScreen> {
                                 ),
                                 onPressed: () {
                                   _backbutton();
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(builder: (content) =>HomeScreen(user: widget.user)));
-                                  // SystemChrome.setPreferredOrientations([
-                                  //   DeviceOrientation.portraitUp,
-                                  //   DeviceOrientation.portraitUp
-                                  // ]);
                                 },
                               ),
                             ),
@@ -223,13 +216,13 @@ class _GameScreenState extends State<GameScreen> {
                           InkWell(
                               child: Row(
                                 children: [
-                          Container(
-                              width: 80,
-                              child: Text(widget.user.name.toUpperCase(),
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ))),
-                          
+                                  Container(
+                                      width: 80,
+                                      child:
+                                          Text(widget.user.name.toUpperCase(),
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ))),
                                   Container(
                                       width: 85,
                                       child: Text("Score: " + widget.user.score,
@@ -255,44 +248,42 @@ class _GameScreenState extends State<GameScreen> {
                                     color: Colors.red,
                                     fontSize: 20,
                                   ))),
-
-
                           InkWell(
-                            child: Row(
-                              children:List.generate(botdetails.length, (index) {
-                             return Row(
-                                children: [
-                                  
-                                  Container(
-                                      width: 85,
-                                      child: Text("Bot",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ))),
-                                    
-                                  Container(
-                                      width: 90,
-                                      child: Text("Score: "+ botdetails[index]['score'],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ))),
-
-                                  Container(
-                                      width: 120,
-                                      child: Text("Money: "+ botdetails[index]["money"],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                          
-                                          ),
-                                ],
-                             );
-                            }),),
+                              child: Row(
+                                children:
+                                    List.generate(botdetails.length, (index) {
+                                  return Row(
+                                    children: [
+                                      Container(
+                                          width: 85,
+                                          child: Text("Bot",
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ))),
+                                      Container(
+                                          width: 90,
+                                          child: Text(
+                                              "Score: " +
+                                                  botdetails[index]['score'],
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ))),
+                                      Container(
+                                        width: 120,
+                                        child: Text(
+                                            "Money: " +
+                                                botdetails[index]["money"],
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                      ),
+                                    ],
+                                  );
+                                }),
+                              ),
                               onTap: () {
                                 _bottechnology();
-                              }
-                              ),
-
+                              }),
                         ],
                       ),
                     ),
@@ -744,14 +735,14 @@ class _GameScreenState extends State<GameScreen> {
       updatemoney = -1000;
       text = "Future Trends";
     }
-  if(whoturn == true){
-     showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
+    if (whoturn == true) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
             title: Text("This Question is for " + text,
                 style: TextStyle(fontSize: 22)),
-            scrollable:true,
+            scrollable: true,
             content: new Container(
               // height: 30,
               width: 450,
@@ -763,101 +754,100 @@ class _GameScreenState extends State<GameScreen> {
                       width: 340,
                       child: CachedNetworkImage(
                         imageUrl:
-                          "https://javathree99.com/s271819/revopoly/images/ir_question/$i${image}.png",
-                      fit: BoxFit.fill,
+                            "https://javathree99.com/s271819/revopoly/images/ir_question/$i${image}.png",
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                  ),
-                  SingleChildScrollView(
-                    child: TextField(
+                    SingleChildScrollView(
+                      child: TextField(
+                        controller: _iranswer,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          labelText: "Answer",
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            actions: [
+              TextButton(
+                child: Text("Submit"),
+                onPressed: () {
+                  print(_iranswer.text);
+                  Navigator.of(context).pop();
+                  _irAnswer(_iranswer.text.toString(), image, updatemoney, text,
+                      whoturn);
+                },
+              ),
+              TextButton(
+                  child: Text("Cancel"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    _updatemoney(-100);
+                  }),
+            ],
+            backgroundColor: Colors.grey,
+          );
+        },
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("This Question is for " + text,
+                style: TextStyle(fontSize: 22)),
+            scrollable: true,
+            content: new Container(
+              // height: 30,
+              width: 450,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 210,
+                      width: 340,
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "https://javathree99.com/s271819/revopoly/images/ir_question/$i${image}.png",
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    TextField(
                       controller: _iranswer,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelText: "Answer",
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          actions: [
-            TextButton(
-              child: Text("Submit"),
-              onPressed: () {
-                print(_iranswer.text);
-                Navigator.of(context).pop();
-                _irAnswer(_iranswer.text.toString(), image, updatemoney, text,
-                    whoturn);
-              },
-            ),
-            TextButton(
-                child: Text("Cancel"),
+            actions: [
+              TextButton(
+                child: Text("Submit"),
                 onPressed: () {
+                  print(_iranswer.text);
                   Navigator.of(context).pop();
-                  _updatemoney(-100);
-                }),
-          ],
-          backgroundColor:Colors.grey,
-        );
-      },
-    );
-  }else{
- showDialog(
-       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-            title: Text("This Question is for " + text,
-                style: TextStyle(fontSize: 22)),
-            scrollable:true,
-            content: new Container(
-              // height: 30,
-              width: 450,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Container(
-                      height: 210,
-                      width: 340,
-                      child: CachedNetworkImage(
-                        imageUrl:
-                          "https://javathree99.com/s271819/revopoly/images/ir_question/$i${image}.png",
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  TextField(
-                    controller: _iranswer,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      labelText: "Answer",
-                    ),
-                  ),
-                ],
+                  _irAnswer(_iranswer.text.toString(), image, updatemoney, text,
+                      whoturn);
+                },
               ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              child: Text("Submit"),
-              onPressed: () {
-                print(_iranswer.text);
-                Navigator.of(context).pop();
-                _irAnswer(_iranswer.text.toString(), image, updatemoney, text,
-                    whoturn);
-              },
-            ),
-            TextButton(
-                child: Text("Cancel"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  _updatemoney(-100);
-                }),
-          ],
-          backgroundColor: Colors.red,
-        );
-      },
-    );
-  }
-   
+              TextButton(
+                  child: Text("Cancel"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    _updatemoney(-100);
+                  }),
+            ],
+            backgroundColor: Colors.red,
+          );
+        },
+      );
+    }
   }
 
   void _irAnswer( String answer, int image, int updatemoney, String text, bool whoturn) {
@@ -905,7 +895,8 @@ class _GameScreenState extends State<GameScreen> {
         if (answer.contains("steam engine") ||
             answer.contains("spinning jenny") ||
             answer.contains("weaving loom")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer,updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer is steam engine, spinning jenny and weaving loom",
@@ -918,7 +909,8 @@ class _GameScreenState extends State<GameScreen> {
         if (answer.contains("increase productivity") ||
             answer.contains("production efficiency") ||
             answer.contains("scale in goods mass production")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer, updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer is increase productivity, production efficiency and scale in goods mass production",
@@ -931,7 +923,8 @@ class _GameScreenState extends State<GameScreen> {
         if (answer.contains(" agriculture inductry") ||
             answer.contains("textile industry") ||
             answer.contains("agriculture industry and textile industry")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer,updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer are the agriculture industry and textile industry",
@@ -944,7 +937,8 @@ class _GameScreenState extends State<GameScreen> {
         if (answer.contains(
                 "creates economic growth where many migrates to cities as it offers more job opportunities to improves the standard of living") ||
             answer.contains("improve the standard of living")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer,updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer is it creates economic growth where many migrates to cities as it offers more job opportunities to improves the standard of living",
@@ -960,7 +954,8 @@ class _GameScreenState extends State<GameScreen> {
                 "development of electrical machines and assembly line production") ||
             answer.contains("development of electrical machines") ||
             answer.contains("assembly line production")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer,updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer is IR 2.0 is the development of electrical machines and assembly line production",
@@ -974,7 +969,8 @@ class _GameScreenState extends State<GameScreen> {
                 "enhances the efficiency in improving the quality and mass production processes compared to the water and steam-based machines that are resource hungry.") ||
             answer.contains(
                 "improving the quality and mass production processes compared to the water")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer, updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer is it impacts the cotton-spinning and weaving mills inductry, allowing it to grow from small businesses to large organisations serving a high number of demands due to the use of steam engines for power to replace manual work.",
@@ -987,7 +983,8 @@ class _GameScreenState extends State<GameScreen> {
         if (answer.contains("assembly line") ||
             answer.contains("internal combustion engine") ||
             answer.contains("electric powered machines")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer,updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer is assembly line, internal combustion engine, electric powered machines",
@@ -1001,7 +998,8 @@ class _GameScreenState extends State<GameScreen> {
             answer.contains("effort and maintenance") ||
             answer.contains("effort") ||
             answer.contains("maintenance")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer,updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer is more efficient in cost, effort and maintenance",
@@ -1013,7 +1011,8 @@ class _GameScreenState extends State<GameScreen> {
       } else if (image == 14 || image == 15) {
         if (answer.contains("telegraph industry") ||
             answer.contains("automotive industry")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer,updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer are the telegraph industry and automotive industry",
@@ -1026,7 +1025,8 @@ class _GameScreenState extends State<GameScreen> {
         if (answer.contains("cost") ||
             answer.contains("effort") ||
             answer.contains("maintenance")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer,updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer is Electrical machines are more efficient in cost, effort and maintenance ",
@@ -1038,10 +1038,12 @@ class _GameScreenState extends State<GameScreen> {
       }
     } else if (text == "IR 3.0") {
       if (image == 1 || image == 2 || image == 3 || image == 4 || image == 5) {
-        if (answer.contains("development and expansion of the computer and microprocessor") ||
+        if (answer.contains(
+                "development and expansion of the computer and microprocessor") ||
             answer.contains("expansion of computer and microprocessor") ||
             answer.contains("computer and microprocessor")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer,updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer is IR 3.0 is the development and expansion of the computer and microprocessor",
@@ -1052,9 +1054,11 @@ class _GameScreenState extends State<GameScreen> {
         }
       } else if (image == 6 || image == 7 || image == 8) {
         if (answer.contains("advances in the invention and manufacturing of transistors and integrated circuits to automate machines") ||
-            answer.contains("manufacturing of transistors and integrated circuit to automate machines") ||
+            answer.contains(
+                "manufacturing of transistors and integrated circuit to automate machines") ||
             answer.contains("integrated circuits to automate machines")) {
-          _irmessage("Congratulation. Your answer is correct", trueanswer,updatemoney, whoturn, text);
+          _irmessage("Congratulation. Your answer is correct", trueanswer,
+              updatemoney, whoturn, text);
         } else {
           _irmessage(
               "Sorry. You are wrong. The correct answer is The advances in the invention and manufacturing of transistors and integrated circuits to automate machines.",
@@ -1298,7 +1302,7 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  void _irmessage( String ans, bool noanswer, int updatemoney, bool whoturn, String text) {
+  void _irmessage(String ans, bool noanswer, int updatemoney, bool whoturn, String text) {
     print("until here");
     String title;
     if (noanswer == true) {
@@ -1306,7 +1310,8 @@ class _GameScreenState extends State<GameScreen> {
     } else {
       title = "Oh.. Unfortunately";
     }
-    setState(() {
+    setState(
+      () {
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -1355,7 +1360,6 @@ class _GameScreenState extends State<GameScreen> {
         _updatebotmoney(-100);
         _updatetechnology(whoturn, text);
       } else {
-        
         _updatebotscore();
         _updatemoney(-100);
         _updatebotmoney(updatemoney);
@@ -1434,78 +1438,77 @@ class _GameScreenState extends State<GameScreen> {
       i = 10;
     }
 
-    if(whoturn == true){
- showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Your Chance", style: TextStyle(fontSize: 22)),
-          content: new Container(
-            height: 300,
-            width: 450,
-            child: Column(
-              children: [
-                Container(
-                  height: 160,
-                  width: 340,
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        "https://javathree99.com/s271819/revopoly/images/chance/$i${image}.png",
-                    fit: BoxFit.fill,
+    if (whoturn == true) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Your Chance", style: TextStyle(fontSize: 22)),
+            content: new Container(
+              height: 300,
+              width: 450,
+              child: Column(
+                children: [
+                  Container(
+                    height: 160,
+                    width: 340,
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          "https://javathree99.com/s271819/revopoly/images/chance/$i${image}.png",
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          actions: [
-            TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  chancemessage(image, whoturn);
-                }),
-          ],
-          backgroundColor:Colors.grey,
-        );
-      },
-    );
-    }else{
- showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Your Chance", style: TextStyle(fontSize: 22)),
-          content: new Container(
-            height: 300,
-            width: 450,
-            child: Column(
-              children: [
-                Container(
-                  height: 160,
-                  width: 340,
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        "https://javathree99.com/s271819/revopoly/images/chance/$i${image}.png",
-                    fit: BoxFit.fill,
+            actions: [
+              TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    chancemessage(image, whoturn);
+                  }),
+            ],
+            backgroundColor: Colors.grey,
+          );
+        },
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Your Chance", style: TextStyle(fontSize: 22)),
+            content: new Container(
+              height: 300,
+              width: 450,
+              child: Column(
+                children: [
+                  Container(
+                    height: 160,
+                    width: 340,
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          "https://javathree99.com/s271819/revopoly/images/chance/$i${image}.png",
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          actions: [
-            TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  chancemessage(image, whoturn);
-                }),
-          ],
-          backgroundColor: Colors.red,
-        );
-      },
-    );
+            actions: [
+              TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    chancemessage(image, whoturn);
+                  }),
+            ],
+            backgroundColor: Colors.red,
+          );
+        },
+      );
     }
-   
   }
 
   void _updatemoney(int updatemoney) {
@@ -1525,7 +1528,7 @@ class _GameScreenState extends State<GameScreen> {
         setState(() {
           widget.user.money = updated.toString();
         });
-        if(int.parse(widget.user.money)<=0){
+        if (int.parse(widget.user.money) <= 0) {
           _endgame();
         }
       }
@@ -1546,27 +1549,27 @@ class _GameScreenState extends State<GameScreen> {
       if (response.body == "success") {
         _loadbotdetails();
       }
-      if(int.parse(botdetails[0]['money'])<=0){
+      if (int.parse(botdetails[0]['money']) <= 0) {
         print("<0");
-          _endgame();
-        }
+        _endgame();
+      }
     });
   }
 
   void _updatebotscore() {
-        http.post(
-            Uri.parse(
-                "https://javathree99.com/s271819/revopoly/php/update_botscore.php"),
-            body: {
-              "email": widget.user.email,
-              "score": botdetails[0]["score"],
-            }).then((response) {
-          print(response.body);
-          if (response.body == "success") {
-            _loadbotdetails();
-          }
-        });
-}
+    http.post(
+        Uri.parse(
+            "https://javathree99.com/s271819/revopoly/php/update_botscore.php"),
+        body: {
+          "email": widget.user.email,
+          "score": botdetails[0]["score"],
+        }).then((response) {
+      print(response.body);
+      if (response.body == "success") {
+        _loadbotdetails();
+      }
+    });
+  }
 
   void chancemessage(int image, bool whoturn) {
     if (whoturn == true) {
@@ -1758,15 +1761,14 @@ class _GameScreenState extends State<GameScreen> {
       updatemoney = -1240;
     }
 
-    if(whoturn ==true){
-    showDialog(
-      
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
+    if (whoturn == true) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
             title: Text("This Question is for " + technology.toString(),
                 style: TextStyle(fontSize: 22)),
-            scrollable:true,
+            scrollable: true,
             content: new Container(
               // height: 30,
               width: 450,
@@ -1784,7 +1786,6 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                     TextField(
                       controller: _iranswer,
-                      
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                         labelText: "Answer",
@@ -1800,8 +1801,8 @@ class _GameScreenState extends State<GameScreen> {
                 onPressed: () {
                   print(_iranswer.text);
                   Navigator.of(context).pop();
-                  _technologyAnswer(_iranswer.text.toString(), image, updatemoney,
-                      technology, whoturn);
+                  _technologyAnswer(_iranswer.text.toString(), image,
+                      updatemoney, technology, whoturn);
                 },
               ),
               TextButton(
@@ -1811,20 +1812,18 @@ class _GameScreenState extends State<GameScreen> {
                     _updatemoney(-100);
                   }),
             ],
-            
-              backgroundColor: Colors.grey,
-          
-        );
-      },
-    );}else{
-       showDialog(
-      
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
+            backgroundColor: Colors.grey,
+          );
+        },
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
             title: Text("This Question is for " + technology.toString(),
                 style: TextStyle(fontSize: 22)),
-            scrollable:true,
+            scrollable: true,
             content: new Container(
               // height: 30,
               width: 450,
@@ -1836,49 +1835,46 @@ class _GameScreenState extends State<GameScreen> {
                       width: 340,
                       child: CachedNetworkImage(
                         imageUrl:
-                          "https://javathree99.com/s271819/revopoly/images/technology/$i${image}.png",
-                      fit: BoxFit.fill,
+                            "https://javathree99.com/s271819/revopoly/images/technology/$i${image}.png",
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                  ),
-                  TextField(
-                    controller: _iranswer,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      labelText: "Answer",
+                    TextField(
+                      controller: _iranswer,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        labelText: "Answer",
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          actions: [
-            TextButton(
-              child: Text("Submit"),
-              onPressed: () {
-                print(_iranswer.text);
-                Navigator.of(context).pop();
-                _technologyAnswer(_iranswer.text.toString(), image, updatemoney,
-                    technology, whoturn);
-              },
-            ),
-            TextButton(
-                child: Text("Cancel"),
+            actions: [
+              TextButton(
+                child: Text("Submit"),
                 onPressed: () {
+                  print(_iranswer.text);
                   Navigator.of(context).pop();
-                  _updatemoney(-100);
-                }),
-          ],
-          
+                  _technologyAnswer(_iranswer.text.toString(), image,
+                      updatemoney, technology, whoturn);
+                },
+              ),
+              TextButton(
+                  child: Text("Cancel"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    _updatemoney(-100);
+                  }),
+            ],
             backgroundColor: Colors.red,
-          
-          
-        );
-      },
-    );
+          );
+        },
+      );
     }
   }
-  
-  void _technologyAnswer(String answer, int image, int updatemoney,String technology, bool whourn) {
+
+  void _technologyAnswer(String answer, int image, int updatemoney, String technology, bool whourn) {
     bool trueanswer = true;
     bool falseanswer = false;
     print(answer);
@@ -2428,7 +2424,10 @@ class _GameScreenState extends State<GameScreen> {
               whoturn);
         }
       } else if (image == 6 || image == 7) {
-        if (answer.contains("Nintendo's Pokemon Go")) {
+        if (answer.contains("Nintendo's Pokemon Go") ||
+            answer.contains("nintendo pokemon go") ||
+            answer.contains("nintendo Pokemon go") ||
+            answer.contains("nintendo's pokemon go")) {
           _technologymessage("Congratulation. Your answer is correct",
               trueanswer, updatemoney, technology, whoturn);
         } else {
@@ -2696,16 +2695,20 @@ class _GameScreenState extends State<GameScreen> {
       },
     );
 
-    if (whoturn == true) {//player turn
-      if (noanswer == true) {//answer correctly
+    if (whoturn == true) {
+      //player turn
+      if (noanswer == true) {
+        //answer correctly
         _updatescore();
         _updatemoney(updatemoney);
         _updatetechnology(whoturn, technology);
       } else {
         _updatemoney(-100);
       }
-    } else {//bot turn
-      if (noanswer == true) {//player answer correctly
+    } else {
+      //bot turn
+      if (noanswer == true) {
+        //player answer correctly
         whoturn = true;
         _updatescore();
         _updatemoney(updatemoney);
@@ -2746,61 +2749,56 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
-void _loadbotdetails() {
+  void _loadbotdetails() {
     http.post(
         Uri.parse(
             "https://javathree99.com/s271819/revopoly/php/load_botdetails.php"),
         body: {
           "email": widget.user.email,
         }).then((response) {
-          print(response.body);
+      print(response.body);
       if (response.body == "nodata") {
         return;
-      }else {
-        
-      setState(() {
-        var jsondata = json.decode(response.body);
-        botdetails = jsondata["botdetails"];
-        print(response.body);
-      });
+      } else {
+        setState(() {
+          var jsondata = json.decode(response.body);
+          botdetails = jsondata["botdetails"];
+          print(response.body);
+        });
       }
     });
   }
 
   void _bottechnology() {
-
     _loadbottechnology();
-    
-      showDialog(
+
+    showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Bot Technology" ,
-              style: TextStyle(fontSize: 22)),
+          title: Text("Bot Technology", style: TextStyle(fontSize: 22)),
           content: new Container(
             height: 250,
             width: 100,
             child: SingleChildScrollView(
-              child: Row(
-                children: [
-                  bottechnology == null
-                      ? Flexible(child: Center(child: Text("No technology Found")))
-                      : Flexible(
-                        child:Column(
-                children:List.generate(bottechnology.length, (index) {
-                return Container(
-                   child: Text(bottechnology[index]["bottechnology"],
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ))
-                  );
-              }
-              )
-             ))
-                ]),
-          ),),
+              child: Row(children: [
+                bottechnology == null
+                    ? Flexible(
+                        child: Center(child: Text("No technology Found")))
+                    : Flexible(
+                        child: Column(
+                            children:
+                                List.generate(bottechnology.length, (index) {
+                        return Container(
+                            child: Text(bottechnology[index]["bottechnology"],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )));
+                      })))
+              ]),
+            ),
+          ),
           actions: [
-            
             TextButton(
                 child: Text("OK"),
                 onPressed: () {
@@ -2810,42 +2808,38 @@ void _loadbotdetails() {
         );
       },
     );
-
-
   }
 
   void _playertechnology() {
     _loadplayertechnology();
-     showDialog(
+    showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Player Technology" ,
-              style: TextStyle(fontSize: 22)),
+          title: Text("Player Technology", style: TextStyle(fontSize: 22)),
           content: new Container(
             height: 250,
             width: 100,
             child: SingleChildScrollView(
-              child: Row(
-                children: [
-                  playertechnology == null
-                      ? Flexible(child: Center(child: Text("No technology Found")))
-                      : Flexible(
-                        child:Column(
-                children:List.generate(playertechnology.length, (index) {
-                return Container(
-                   child: Text(playertechnology[index]["playertechnology"],
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ))
-                  );
-              }
-              )
-             ))
-                ]),
-          ),),
+              child: Row(children: [
+                playertechnology == null
+                    ? Flexible(
+                        child: Center(child: Text("No technology Found")))
+                    : Flexible(
+                        child: Column(
+                            children:
+                                List.generate(playertechnology.length, (index) {
+                        return Container(
+                            child: Text(
+                                playertechnology[index]["playertechnology"],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                )));
+                      })))
+              ]),
+            ),
+          ),
           actions: [
-            
             TextButton(
                 child: Text("OK"),
                 onPressed: () {
@@ -2866,12 +2860,12 @@ void _loadbotdetails() {
         }).then((response) {
       if (response.body == "nodata") {
         return;
-      }else {        
-      setState(() {
-        var jsondata = json.decode(response.body);
-        bottechnology = jsondata["bottechnology"];
-        print(response.body);
-      });
+      } else {
+        setState(() {
+          var jsondata = json.decode(response.body);
+          bottechnology = jsondata["bottechnology"];
+          print(response.body);
+        });
       }
     });
   }
@@ -2886,148 +2880,143 @@ void _loadbotdetails() {
       if (response.body == "nodata") {
         // print("helloasdf");
         return;
-      }else {
-        
-      setState(() {
-        var jsondata = json.decode(response.body);
-        playertechnology = jsondata["playertechnology"];
-        print(response.body);
-      });
+      } else {
+        setState(() {
+          var jsondata = json.decode(response.body);
+          playertechnology = jsondata["playertechnology"];
+          print(response.body);
+        });
       }
     });
   }
 
   void _backbutton() {
-     showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Exit the game", style: TextStyle(fontSize: 22)),
-                content: new Container(
-                  height: 300,
-                  width: 250,
-                  child: Column(
-                    children: [
-                      Container(
-                        child: Text("Do you want to save the game?", style: TextStyle(fontSize: 25)),
-                      ),
-                    ],
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Exit the game", style: TextStyle(fontSize: 22)),
+            content: new Container(
+              height: 300,
+              width: 250,
+              child: Column(
+                children: [
+                  Container(
+                    child: Text("Do you want to save the game?",
+                        style: TextStyle(fontSize: 25)),
                   ),
-                ),
-                 actions: [
-            TextButton(
-                child: Text("No"),
-                onPressed: () {
-                  _resetgame();
-                   Navigator.push( context,
-                    MaterialPageRoute(builder: (content) =>HomeScreen(user: widget.user)));
-                SystemChrome.setPreferredOrientations([
-                                    DeviceOrientation.portraitUp,
-                                    DeviceOrientation.portraitUp
-                                  ]);
-                }),
-            TextButton(
-                child: Text("Yes"),
-                onPressed: () {
-                  Navigator.push( context,
-                    MaterialPageRoute(builder: (content) =>HomeScreen(user: widget.user)));
-                SystemChrome.setPreferredOrientations([
-                                    DeviceOrientation.portraitUp,
-                                    DeviceOrientation.portraitUp
-                                  ]);
-                }),
-                 
-          ],
-        );
-    });
-        
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                  child: Text("No"),
+                  onPressed: () {
+                    _resetgame();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (content) =>
+                                HomeScreen(user: widget.user)));
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.portraitUp,
+                      DeviceOrientation.portraitUp
+                    ]);
+                  }),
+              TextButton(
+                  child: Text("Yes"),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (content) =>
+                                HomeScreen(user: widget.user)));
+                    SystemChrome.setPreferredOrientations([
+                      DeviceOrientation.portraitUp,
+                      DeviceOrientation.portraitUp
+                    ]);
+                  }),
+            ],
+          );
+        });
   }
 
   void _resetgame() {
     http.post(
-            Uri.parse(
-                "https://javathree99.com/s271819/revopoly/php/reset_game.php"),
-            body: {
-              "email": widget.user.email,
-            }).then((response) {
-                widget.user.score ="0";
-                widget.user.money = "15000";
-        });
+        Uri.parse(
+            "https://javathree99.com/s271819/revopoly/php/reset_game.php"),
+        body: {
+          "email": widget.user.email,
+        }).then((response) {
+      widget.user.score = "0";
+      widget.user.money = "15000";
+    });
   }
 
   void _endgame() {
-    setState(
-      () {
-     showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Game Over", style: TextStyle(fontSize: 22)),
-               content: new Container(
-            height: 250,
-            width: 450,
-            child: SingleChildScrollView(
-              child: Row(
-                children: [
-                  playertechnology == null
-                      ? Flexible(child: Center(child: Text("No technology Found")))
-                      : Flexible(
-                        child:Column(
-                children:List.generate(playertechnology.length, (index) {
-                return Container(
-                   child: Text(playertechnology[index]["playertechnology"],
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ))
-                  );
-              }
-              )
-             )),
-             bottechnology == null
-                      ? Flexible(child: Center(child: Text("No technology Found")))
-                      : Flexible(
-                        child:Column(
-                children:List.generate(bottechnology.length, (index) {
-                return Container(
-                   child: Text(bottechnology[index]["bottechnology"],
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ))
-                  );
-              }
-              )
-             ))
-                ]
-                
+    setState(() {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Game Over", style: TextStyle(fontSize: 30)),
+              content: new Container(
+                height: 250,
+                width: 450,
+                child: SingleChildScrollView(
+                  child: Row(children: [
+                    SizedBox(width: 20),
+                    playertechnology == null
+                        ? Flexible(
+                            child: Center(child: Text("No technology Found")))
+                        : Flexible(
+                            child: Column(
+                                children: List.generate(playertechnology.length,
+                                    (index) {
+                            return Container(
+                                child: Text(
+                                    playertechnology[index]["playertechnology"],
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    )));
+                          }))),
+                    SizedBox(width: 100),
+                    //  Text("Bot Technology"),
+                    bottechnology == null
+                        ? Flexible(
+                            child: Center(child: Text("No technology Found")))
+                        : Flexible(
+                            child: Column(
+                                children: List.generate(bottechnology.length,
+                                    (index) {
+                            return Container(
+                                child:
+                                    Text(bottechnology[index]["bottechnology"],
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        )));
+                          })))
+                  ]),
                 ),
-          ),
-          ),
-                 actions: [
-            TextButton(
-                child: Text("No"),
-                onPressed: () {
-                  _resetgame();
-                   Navigator.push( context,
-                    MaterialPageRoute(builder: (content) =>HomeScreen(user: widget.user)));
-                SystemChrome.setPreferredOrientations([
-                                    DeviceOrientation.portraitUp,
-                                    DeviceOrientation.portraitUp
-                                  ]);
-                }),
-            TextButton(
-                child: Text("Yes"),
-                onPressed: () {
-                  Navigator.push( context,
-                    MaterialPageRoute(builder: (content) =>HomeScreen(user: widget.user)));
-                SystemChrome.setPreferredOrientations([
-                                    DeviceOrientation.portraitUp,
-                                    DeviceOrientation.portraitUp
-                                  ]);
-                }),
-                 
-          ],
-        );
-    });});
+              ),
+              actions: [
+                TextButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      _resetgame();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (content) =>
+                                  HomeScreen(user: widget.user)));
+                      SystemChrome.setPreferredOrientations([
+                        DeviceOrientation.portraitUp,
+                        DeviceOrientation.portraitUp
+                      ]);
+                    }),
+              ],
+            );
+          });
+    });
   }
-
 }
