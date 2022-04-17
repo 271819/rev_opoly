@@ -3022,16 +3022,7 @@ class _GameScreenState extends State<GameScreen> {
               TextButton(
                   child: Text("No"),
                   onPressed: () {
-                    _resetgame();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (content) =>
-                                HomeScreen(user: widget.user)));
-                    SystemChrome.setPreferredOrientations([
-                      DeviceOrientation.portraitUp,
-                      DeviceOrientation.portraitUp
-                    ]);
+                    _giveup();
                   }),
               TextButton(
                   child: Text("Yes"),
@@ -3300,5 +3291,78 @@ class _GameScreenState extends State<GameScreen> {
 
 
 
+  }
+
+  void _giveup() {
+    String winner;
+    if(int.parse(botdetails[0]["score"]) > int.parse(widget.user.score)){
+      winner = "Bot Win";
+    }else{
+      winner = "Player Win";
+    }
+     setState(() {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(winner, style: TextStyle(fontSize: 30)),
+              content: new Container(
+                height: 250,
+                width: 450,
+                child: SingleChildScrollView(
+                  child: Row(children: [
+                    SizedBox(width: 20),
+                    playertechnology == null
+                        ? Flexible(
+                            child: Center(child: Text("No technology Found")))
+                        : Flexible(
+                            child: Column(
+                                children: List.generate(playertechnology.length,
+                                    (index) {
+                            return Container(
+                                child: Text(
+                                    playertechnology[index]["playertechnology"],
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    )));
+                          }))),
+                    SizedBox(width: 100),
+                    //  Text("Bot Technology"),
+                    bottechnology == null
+                        ? Flexible(
+                            child: Center(child: Text("No technology Found")))
+                        : Flexible(
+                            child: Column(
+                                children: List.generate(bottechnology.length,
+                                    (index) {
+                            return Container(
+                                child:
+                                    Text(bottechnology[index]["bottechnology"],
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                    )));
+                          })))
+                  ]),
+                ),
+              ),
+              actions: [
+                TextButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      _resetgame();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (content) =>
+                                  HomeScreen(user: widget.user)));
+                      SystemChrome.setPreferredOrientations([
+                        DeviceOrientation.portraitUp,
+                        DeviceOrientation.portraitUp
+                      ]);
+                    }),
+              ],
+            );
+          });
+    });
   }
 }
