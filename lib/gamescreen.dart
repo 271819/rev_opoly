@@ -175,6 +175,8 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     _loadbotdetails();
+     _loadplayertechnology();
+     _loadbottechnology();
     super.initState();
   }
 
@@ -712,6 +714,7 @@ class _GameScreenState extends State<GameScreen> {
     int image = Random().nextInt(15) + 1;
     int updatemoney;
     String text;
+    int rentmoney;
     int i;
     if (image < 10) {
       i = 100;
@@ -722,19 +725,25 @@ class _GameScreenState extends State<GameScreen> {
     if (totalstep == 1) {
       updatemoney = -1100;
       text = "IR 1.0";
+      rentmoney = 100;
     } else if (totalstep == 3) {
       updatemoney = -1200;
       text = "IR 2.0";
+      rentmoney = 100;
     } else if (totalstep == 6) {
       updatemoney = -1300;
       text = "IR 3.0";
+      rentmoney = 100;
     } else if (totalstep == 8) {
       updatemoney = -1400;
       text = "IR 4.0";
+      rentmoney = 100;
     } else if (totalstep == 9) {
       updatemoney = -1000;
       text = "Future Trends";
+      rentmoney = 100;
     }
+    _checktechnology(text,whoturn,rentmoney);
     if (whoturn == true) {
       showDialog(
         context: context,
@@ -1209,7 +1218,7 @@ class _GameScreenState extends State<GameScreen> {
               text);
         }
       }
-    } else if (text == "Future Thrends") {
+    } else if (text == "Future Trends") {
       if (image == 1 || image == 2 || image == 3 || image == 4 || image == 5) {
         if (answer.contains(
                 "technological transformation to change the way devices and technologies interact") ||
@@ -1303,7 +1312,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _irmessage(String ans, bool noanswer, int updatemoney, bool whoturn, String text) {
-    print("until here");
+
     String title;
     if (noanswer == true) {
       title = "Congratulation!!!";
@@ -1529,7 +1538,7 @@ class _GameScreenState extends State<GameScreen> {
           widget.user.money = updated.toString();
         });
         if (int.parse(widget.user.money) <= 0) {
-          _endgame();
+          _endgame("player");
         }
       }
     });
@@ -1551,7 +1560,7 @@ class _GameScreenState extends State<GameScreen> {
       }
       if (int.parse(botdetails[0]['money']) <= 0) {
         print("<0");
-        _endgame();
+        _endgame("bot");
       }
     });
   }
@@ -1624,11 +1633,12 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void inventor3(int totalstep, bool whoturn) {
+    if(whoturn==true){
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Your Chance", style: TextStyle(fontSize: 22)),
+          title: Text("Inventor", style: TextStyle(fontSize: 22)),
           content: new Container(
             height: 300,
             width: 450,
@@ -1659,12 +1669,55 @@ class _GameScreenState extends State<GameScreen> {
                   }
                 }),
           ],
+          backgroundColor: Colors.grey,
+        );
+      },
+    );
+  }else{
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Inventor", style: TextStyle(fontSize: 22)),
+          content: new Container(
+            height: 300,
+            width: 450,
+            child: Column(
+              children: [
+                Container(
+                  height: 160,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/inventor3.JPG'),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  if (whoturn == true) {
+                    _updatemoney(-2000);
+                  } else {
+                    _updatebotmoney(-2000);
+                  }
+                }),
+          ],
+          backgroundColor: Colors.red,
         );
       },
     );
   }
+  }
 
   void inventor23(int totalstep, bool whoturn) {
+    if(whoturn==true){
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -1700,9 +1753,51 @@ class _GameScreenState extends State<GameScreen> {
                   }
                 }),
           ],
+          backgroundColor: Colors.grey,
         );
       },
     );
+  }else{
+ showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Your Chance", style: TextStyle(fontSize: 22)),
+          content: new Container(
+            height: 300,
+            width: 450,
+            child: Column(
+              children: [
+                Container(
+                  height: 160,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/inventor.JPG'),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  if (whoturn == true) {
+                    _updatemoney(-2000);
+                  } else {
+                    _updatebotmoney(-2000);
+                  }
+                }),
+          ],
+          backgroundColor: Colors.red,
+        );
+      },
+    );
+  }
   }
 
   void technologyquestion(int totalstep, bool whoturn) {
@@ -1710,6 +1805,7 @@ class _GameScreenState extends State<GameScreen> {
     int image = Random().nextInt(15) + 1;
     int updatemoney;
     String technology;
+    int rentmoney;
     int i;
     if (image < 10) {
       i = 100;
@@ -1720,47 +1816,61 @@ class _GameScreenState extends State<GameScreen> {
     if (totalstep == 5) {
       technology = "Smart Wearable";
       updatemoney = -3000;
+      rentmoney = 300;
     } else if (totalstep == 11) {
       technology = "Cloud Computing";
       updatemoney = -1380;
+      rentmoney = 200;
     } else if (totalstep == 13) {
       technology = "IoT in Smart Home";
       updatemoney = -1340;
+      rentmoney = 200;
     } else if (totalstep == 14) {
       technology = "IoT in Smart Grid";
       updatemoney = -1500;
+      rentmoney = 200;
     } else if (totalstep == 16) {
       technology = "Cyber Security";
       updatemoney = -1500;
+      rentmoney = 200;
     } else if (totalstep == 18) {
       technology = "Augmented Reality";
       updatemoney = -1260;
+      rentmoney = 200;
     } else if (totalstep == 19) {
       technology = "Big Data";
       updatemoney = -1440;
+      rentmoney = 200;
     } else if (totalstep == 20) {
       technology = "Smart City";
       updatemoney = -3000;
+      rentmoney = 200;
     } else if (totalstep == 21) {
       technology = "IoT in Smart City";
       updatemoney = -1200;
+      rentmoney = 200;
     } else if (totalstep == 22) {
       technology = "IoT in Retail Market";
       updatemoney = -1020;
+      rentmoney = 200;
     } else if (totalstep == 24) {
       technology = "IoT in Health Care";
       updatemoney = -1580;
+      rentmoney = 200;
     } else if (totalstep == 26) {
       technology = "System Integration";
       updatemoney = -1660;
+      rentmoney = 200;
     } else if (totalstep == 27) {
       technology = "Additive Manufacturing";
       updatemoney = -1700;
+      rentmoney = 200;
     } else if (totalstep == 29) {
       technology = "IoT in Agriculture";
       updatemoney = -1240;
+      rentmoney = 200;
     }
-
+  _checktechnology(technology,whoturn,rentmoney);
     if (whoturn == true) {
       showDialog(
         context: context,
@@ -2953,13 +3063,19 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
-  void _endgame() {
+  void _endgame(String user) {
+    String text;
+    if(user=="bot"){
+       text = "Player Win";
+    }else{
+      text = "Bot Win";
+    }
     setState(() {
       showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text("Game Over", style: TextStyle(fontSize: 30)),
+              title: Text(text, style: TextStyle(fontSize: 30)),
               content: new Container(
                 height: 250,
                 width: 450,
@@ -2994,7 +3110,7 @@ class _GameScreenState extends State<GameScreen> {
                                     Text(bottechnology[index]["bottechnology"],
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                        )));
+                                    )));
                           })))
                   ]),
                 ),
@@ -3018,5 +3134,171 @@ class _GameScreenState extends State<GameScreen> {
             );
           });
     });
+  }
+
+  void _checktechnology(String checktechnology, bool whoturn, int rentmoney) {
+    print(checktechnology);
+     http.post(
+        Uri.parse(
+            "https://javathree99.com/s271819/revopoly/php/check_technology.php"),
+        body: {
+          "technology": checktechnology,
+        }).then((response) {
+      if (response.body == "nodata") {
+         print("new technology");
+      } else {
+        _existtechnology(response.body,whoturn, rentmoney);
+      }
+    });
+  }
+
+  void _existtechnology(String whotechnology, bool whoturn, int rentmoney) {
+    String name;
+    if(whotechnology == "player"){
+      name = widget.user.name;
+    }else{
+      name = "bot";
+    }
+
+    if(whoturn == true && whotechnology =="player"){ //player turns and technology bought by player
+    setState(() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("This technology already bought by " +name,
+                style: TextStyle(fontSize: 22)),
+            scrollable: true,
+            content: new Container(
+              // height: 30,
+              width: 450,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text("Just pass through the question. No need to pay the rent", style: TextStyle(fontSize: 18))
+                  ],
+                ),
+              ),
+            ),
+            actions: [
+              TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  }),
+            ],
+            backgroundColor: Colors.grey,
+          );
+        },
+      );
+    });
+    }else if(whoturn == true && whotechnology=="bot"){ //player turn and technology bought by the bot
+      setState(() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("This technology already bought by " +name,
+                style: TextStyle(fontSize: 22)),
+            scrollable: true,
+            content: new Container(
+              // height: 30,
+              width: 450,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text("You need to pay the rent "+rentmoney.toString()+" to "+name, style: TextStyle(fontSize: 18))
+                  ],
+                ),
+              ),
+            ),
+            actions: [
+              TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                     _updatemoney(-rentmoney);
+                     _updatebotmoney(rentmoney);
+                  }),
+            ],
+            backgroundColor: Colors.grey,
+          );
+        },
+      );
+    });
+    }else if(whoturn == false && whotechnology=="player"){ //bot turn and technology bought by player
+      setState(() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("This technology already bought by " +name,
+                style: TextStyle(fontSize: 22)),
+            scrollable: true,
+            content: new Container(
+              // height: 30,
+              width: 450,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text("Bot need to pay the rent "+rentmoney.toString()+" to "+name, style: TextStyle(fontSize: 18))
+                  ],
+                ),
+              ),
+            ),
+            actions: [
+              TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                    _updatemoney(rentmoney);
+                    _updatebotmoney(-rentmoney);
+                  }),
+            ],
+            backgroundColor: Colors.red,
+          );
+        },
+      );
+    });
+    }else{
+      setState(() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("This technology already bought by " +name,
+                style: TextStyle(fontSize: 22)),
+            scrollable: true,
+            content: new Container(
+              // height: 30,
+              width: 450,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text("Just pass through the question. No need to pay the rent", style: TextStyle(fontSize: 18))
+                  ],
+                ),
+              ),
+            ),
+            actions: [
+              TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  }),
+            ],
+            backgroundColor: Colors.red,
+          );
+        },
+      );
+    });
+    }
+
+
+
   }
 }
