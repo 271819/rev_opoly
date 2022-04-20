@@ -106,10 +106,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             title: Text("Rules of the Game", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,)),
             content: Text(
-                "In this game, players are going to click on the dices to roll the dices. \n" +
-                    "Then the character will move  based on the number shown in the dices" +
-                    "Players need to answer the question when the character move to the specify card." +
-                    "Players can get the score when they answer correctly."),
+                "Innn this game, players are going to click on the dices to roll the dices. \n" +
+                    "Players need to answer the question when the character move to the specify picture." +
+                    "Players can bought the technology when they answer correctly.\n\n"+
+                    "After player moved, followed by bot turn. Player need to answer the question correctly to prevent the technology bought by the bot"+
+                    "Player need to pay the rent to the bot if the technology is bought by the bot and vice versa"+
+                    "The person who bought the most technology is the winner."),
             actions: [
               TextButton(
                 child: Text("OK"),

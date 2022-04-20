@@ -3069,10 +3069,15 @@ class _GameScreenState extends State<GameScreen> {
               title: Text(text, style: TextStyle(fontSize: 30)),
               content: new Container(
                 height: 250,
-                width: 450,
+                width: 200,
                 child: SingleChildScrollView(
-                  child: Row(children: [
-                    SizedBox(width: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        child:Column(
+                          children: [
+                  SizedBox(width: 20),
                     playertechnology == null
                         ? Flexible(
                             child: Center(child: Text("No technology Found")))
@@ -3081,14 +3086,22 @@ class _GameScreenState extends State<GameScreen> {
                                 children: List.generate(playertechnology.length,
                                     (index) {
                             return Container(
+                              height:100,
                                 child: Text(
                                     playertechnology[index]["playertechnology"],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     )));
                           }))),
-                    SizedBox(width: 100),
-                    //  Text("Bot Technology"),
+                          ],
+                        )
+                      ),
+                    
+                    Container(
+                      child:Column(
+                        children: [
+                      // SizedBox(width: 150),
+                     Text("Bot Technology"),
                     bottechnology == null
                         ? Flexible(
                             child: Center(child: Text("No technology Found")))
@@ -3103,6 +3116,8 @@ class _GameScreenState extends State<GameScreen> {
                                           fontWeight: FontWeight.bold,
                                     )));
                           })))
+                    ],))
+                    
                   ]),
                 ),
               ),
@@ -3297,8 +3312,10 @@ class _GameScreenState extends State<GameScreen> {
     String winner;
     if(int.parse(botdetails[0]["score"]) > int.parse(widget.user.score)){
       winner = "Bot Win";
-    }else{
+    }else if(int.parse(widget.user.score) > int.parse(botdetails[0]["score"])){
       winner = "Player Win";
+    }else{
+      winner = "Draw";
     }
      setState(() {
       showDialog(
@@ -3308,25 +3325,27 @@ class _GameScreenState extends State<GameScreen> {
               title: Text(winner, style: TextStyle(fontSize: 30)),
               content: new Container(
                 height: 250,
-                width: 450,
+                width: 500,
                 child: SingleChildScrollView(
-                  child: Row(children: [
-                    SizedBox(width: 20),
+                  child: Row(
+                    children: [
+                    SizedBox(width: 25),
                     playertechnology == null
                         ? Flexible(
                             child: Center(child: Text("No technology Found")))
                         : Flexible(
                             child: Column(
-                                children: List.generate(playertechnology.length,
-                                    (index) {
+                                children: List.generate(playertechnology.length,(index) {
                             return Container(
                                 child: Text(
                                     playertechnology[index]["playertechnology"],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     )));
-                          }))),
-                    SizedBox(width: 100),
+                          })
+                        )),
+
+                    SizedBox(width: 110),
                     //  Text("Bot Technology"),
                     bottechnology == null
                         ? Flexible(
@@ -3336,11 +3355,10 @@ class _GameScreenState extends State<GameScreen> {
                                 children: List.generate(bottechnology.length,
                                     (index) {
                             return Container(
-                                child:
-                                    Text(bottechnology[index]["bottechnology"],
+                                child:Text(bottechnology[index]["bottechnology"],
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                    )));
+                                )));
                           })))
                   ]),
                 ),
