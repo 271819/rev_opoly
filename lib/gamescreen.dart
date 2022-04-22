@@ -1329,6 +1329,7 @@ class _GameScreenState extends State<GameScreen> {
                 content: new Container(
                   height: 300,
                   width: 450,
+                  child: SingleChildScrollView(
                   child: Column(
                     children: [
                       Container(
@@ -1336,7 +1337,7 @@ class _GameScreenState extends State<GameScreen> {
                       ),
                     ],
                   ),
-                ),
+                )),
                 actions: [
                   TextButton(
                       child: Text("OK"),
@@ -2785,6 +2786,7 @@ class _GameScreenState extends State<GameScreen> {
                 content: new Container(
                   height: 300,
                   width: 450,
+                  child: SingleChildScrollView(
                   child: Column(
                     children: [
                       Container(
@@ -2792,7 +2794,7 @@ class _GameScreenState extends State<GameScreen> {
                       ),
                     ],
                   ),
-                ),
+                )),
                 actions: [
                   TextButton(
                       child: Text("OK"),
@@ -3061,7 +3063,7 @@ class _GameScreenState extends State<GameScreen> {
     }else{
       text = "Bot Win";
     }
-    setState(() {
+   setState(() {
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -3069,39 +3071,28 @@ class _GameScreenState extends State<GameScreen> {
               title: Text(text, style: TextStyle(fontSize: 30)),
               content: new Container(
                 height: 250,
-                width: 200,
+                width: 500,
                 child: SingleChildScrollView(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child:Column(
-                          children: [
-                  SizedBox(width: 20),
+                    SizedBox(width: 25),
                     playertechnology == null
                         ? Flexible(
                             child: Center(child: Text("No technology Found")))
                         : Flexible(
                             child: Column(
-                                children: List.generate(playertechnology.length,
-                                    (index) {
+                                children: List.generate(playertechnology.length,(index) {
                             return Container(
-                              height:100,
                                 child: Text(
                                     playertechnology[index]["playertechnology"],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     )));
-                          }))),
-                          ],
-                        )
-                      ),
-                    
-                    Container(
-                      child:Column(
-                        children: [
-                      // SizedBox(width: 150),
-                     Text("Bot Technology"),
+                          })
+                        )),
+
+                    SizedBox(width: 110),
+                    //  Text("Bot Technology"),
                     bottechnology == null
                         ? Flexible(
                             child: Center(child: Text("No technology Found")))
@@ -3110,14 +3101,11 @@ class _GameScreenState extends State<GameScreen> {
                                 children: List.generate(bottechnology.length,
                                     (index) {
                             return Container(
-                                child:
-                                    Text(bottechnology[index]["bottechnology"],
+                                child:Text(bottechnology[index]["bottechnology"],
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                    )));
+                                )));
                           })))
-                    ],))
-                    
                   ]),
                 ),
               ),
@@ -3140,6 +3128,7 @@ class _GameScreenState extends State<GameScreen> {
             );
           });
     });
+  
   }
 
   void _checktechnology(String checktechnology, bool whoturn, int rentmoney) {
