@@ -60,12 +60,9 @@ class _ProfileState extends State<Profile> {
                 BlendMode.dstATop)),
           ),
           child: SingleChildScrollView(
-            child: Column(children: [
-              new Positioned(
-                  top: 0.0,
-                  left: 0.0,
-                  right: 0.0,
-                  child: AppBar(
+            child: Column(
+              children: [
+                   AppBar(
                     title: Text('PROFILE',  style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,)),// You can add title here
                     leading: new IconButton(
                       icon: new Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -73,7 +70,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     backgroundColor: Colors.blue.withOpacity(0.3), //You can make this transparent
                     elevation: 0.0, //No shadow
-                  ),),
+                  ),
               Container(
                 child: Padding(
                     padding: EdgeInsets.fromLTRB(30, 30, 30, 20),
@@ -94,14 +91,13 @@ class _ProfileState extends State<Profile> {
                                     
                                 fit: BoxFit.cover,
                               ),
-                            //   border: Border.all(
-                            //     width: 4.0,
-                            //     color: Colors.black,
-                            //   ),
-                            //   borderRadius: BorderRadius.circular(20.0),
+                              border: Border.all(
+                                width: 4.0,
+                                color: Colors.black,
+                              ),
+                              // borderRadius: BorderRadius.circular(20.0),
                             ),
                              child: CachedNetworkImage(
-                            placeholder: (context, url) => const CircularProgressIndicator(),
                             imageUrl:
                                 "https://javathree99.com/s271819/revopoly/images/profile/${widget.user.email}.png",
                             fit: BoxFit.fill,
@@ -266,6 +262,7 @@ class _ProfileState extends State<Profile> {
         }).then((response) {
       print(response.body);
       if (response.body == "success") {
+        CachedNetworkImage.evictFromCache("https://javathree99.com/s271819/revopoly/images/profile/${widget.user.email}.png");
         Fluttertoast.showToast(
             msg: "Successfully update your Profile !!! ",
             toastLength: Toast.LENGTH_SHORT,
