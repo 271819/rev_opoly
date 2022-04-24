@@ -95,7 +95,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
                                       padding:
                                           EdgeInsets.fromLTRB(20, 10, 20, 0),
                                       child: Text(
-                                          "Matrix No: " + userlist[index]['phone'],
+                                          "Matrix No: " + userlist[index]['matric'],
                                           style: TextStyle(
                                             fontSize: 18,
                                           ))),

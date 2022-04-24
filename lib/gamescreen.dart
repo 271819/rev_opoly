@@ -295,7 +295,7 @@ class _GameScreenState extends State<GameScreen> {
                         child: Row(
                       children: [
                         Container(
-                          height: 70,
+                          height: 70, 
                           width: 82,
                           decoration: BoxDecoration(
                             image: DecorationImage(

@@ -1,5 +1,5 @@
 class User{
-  String name,email,password,datereg,score,money,phone;
+  String name,email,password,datereg,score,money,matric;
   User(
     {
       this.name,
@@ -8,7 +8,7 @@ class User{
       this.datereg,
       this.score,
       this.money,
-      this.phone,
+      this.matric,
     }
   ); 
 }

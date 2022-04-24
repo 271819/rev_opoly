@@ -32,7 +32,7 @@ class _ProfileState extends State<Profile> {
   void initState() {
     super.initState();
     nameController.text = widget.user.name;
-    phoneController.text = widget.user.phone;
+    phoneController.text = widget.user.matric;
   }
 
   @override
@@ -248,15 +248,15 @@ class _ProfileState extends State<Profile> {
     await pr.show();
     String base64Image = base64Encode(_image.readAsBytesSync());
     String name = nameController.text.toString();
-    String phone = phoneController.text.toString();
+    String matric = phoneController.text.toString();
     print(name);
-    print(phone);
+    print(matric);
     http.post(
         Uri.parse(
             "https://javathree99.com/s271819/revopoly/php/update_profile.php"),
         body: {
           "name": name,
-          "phone": phone,
+          "matric": matric,
           "email": widget.user.email,
           "encoded_string": base64Image
         }).then((response) {
@@ -274,7 +274,7 @@ class _ProfileState extends State<Profile> {
 
         setState(() {
           widget.user.name = nameController.text.toString();
-          widget.user.phone = phoneController.text.toString();
+          widget.user.matric = phoneController.text.toString();
         });
         pr.hide().then((isHidden) {
           print(isHidden);
