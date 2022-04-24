@@ -8,6 +8,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:rev_opoly/loginscreen.dart';
 import 'package:rev_opoly/user.dart';
+import 'package:flutter/services.dart';
+
 
 class Profile extends StatefulWidget {
   final User user;
@@ -89,16 +91,17 @@ class _ProfileState extends State<Profile> {
                                 image: _image == null
                                     ? AssetImage(pathAsset)
                                     : FileImage(_image),
-                                    // :Image.network("https://javathree99.com/s271819/revopoly/images/profile/${widget.user.email}.png"),
+                                    
                                 fit: BoxFit.cover,
                               ),
-                              border: Border.all(
-                                width: 4.0,
-                                color: Colors.black,
-                              ),
-                              borderRadius: BorderRadius.circular(20.0),
+                            //   border: Border.all(
+                            //     width: 4.0,
+                            //     color: Colors.black,
+                            //   ),
+                            //   borderRadius: BorderRadius.circular(20.0),
                             ),
                              child: CachedNetworkImage(
+                            placeholder: (context, url) => const CircularProgressIndicator(),
                             imageUrl:
                                 "https://javathree99.com/s271819/revopoly/images/profile/${widget.user.email}.png",
                             fit: BoxFit.fill,
@@ -321,4 +324,6 @@ class _ProfileState extends State<Profile> {
           );
         });
   }
+
+
 }
