@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:rev_opoly/loginscreen.dart';
 import 'package:rev_opoly/user.dart';
@@ -78,7 +80,7 @@ class _ProfileState extends State<Profile> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
-                              // onTap: () => {_onUploadPic()},
+                              onTap: () => {_onUploadPic()},
                               child: Container(
                             height: 250,
                             width: 260,
@@ -87,6 +89,7 @@ class _ProfileState extends State<Profile> {
                                 image: _image == null
                                     ? AssetImage(pathAsset)
                                     : FileImage(_image),
+                                    // :Image.network("https://javathree99.com/s271819/revopoly/images/profile/${widget.user.email}.png"),
                                 fit: BoxFit.cover,
                               ),
                               border: Border.all(
@@ -95,6 +98,11 @@ class _ProfileState extends State<Profile> {
                               ),
                               borderRadius: BorderRadius.circular(20.0),
                             ),
+                             child: CachedNetworkImage(
+                            imageUrl:
+                                "https://javathree99.com/s271819/revopoly/images/profile/${widget.user.email}.png",
+                            fit: BoxFit.fill,
+                          ),
                           )),
                           SizedBox(height: 30),
                           Divider(
@@ -133,10 +141,10 @@ class _ProfileState extends State<Profile> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Phone:   ",
+                                Text("Matrix No:   ",
                                     style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,)),
                                 Container(
-                                  width: 150,
+                                  width: 120,
                                   child: TextField(
                                     keyboardType: TextInputType.number,
                                     style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,),
@@ -191,19 +199,19 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  // Future _onUploadPic() async {
-  //   final picker = ImagePicker();
-  //   final pickedFile = await picker.getImage(
-  //       source: ImageSource.camera, maxHeight: 800, maxWidth: 800);
+  Future _onUploadPic() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.getImage(
+        source: ImageSource.camera, maxHeight: 800, maxWidth: 800);
 
-  //   setState(() {
-  //     if (pickedFile != null) {
-  //       _image = File(pickedFile.path);
-  //     } else {
-  //       print("No image selected");
-  //     }
-  //   });
-  // }
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print("No image selected");
+      }
+    });
+  }
 
   void _saveChange() {
     showDialog(
@@ -239,12 +247,11 @@ class _ProfileState extends State<Profile> {
     pr = ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: true, showLogs: true);
     await pr.show();
-    // String base64Image = base64Encode(_image.readAsBytesSync());
+    String base64Image = base64Encode(_image.readAsBytesSync());
     String name = nameController.text.toString();
     String phone = phoneController.text.toString();
     print(name);
     print(phone);
-    // print(base64Image);
     http.post(
         Uri.parse(
             "https://javathree99.com/s271819/revopoly/php/update_profile.php"),
@@ -252,7 +259,7 @@ class _ProfileState extends State<Profile> {
           "name": name,
           "phone": phone,
           "email": widget.user.email,
-          // "encoded_string": base64Image
+          "encoded_string": base64Image
         }).then((response) {
       print(response.body);
       if (response.body == "success") {
