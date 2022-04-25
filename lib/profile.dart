@@ -118,11 +118,6 @@ class _ProfileState extends State<Profile> {
                                           fit: BoxFit.fill,
                                         ),
                                 ),
-                                //    child: CachedNetworkImage(
-                                //   imageUrl:
-                                //       "https://javathree99.com/s271819/revopoly/images/profile/${widget.user.email}.png",
-                                //   fit: BoxFit.fill,
-                                // ),
                               )),
                           SizedBox(height: 30),
                           Divider(
@@ -198,7 +193,7 @@ class _ProfileState extends State<Profile> {
                           SizedBox(height: 20),
                           Text("Email:  " + widget.user.email,
                               style: TextStyle(
-                                fontSize: 22,
+                                fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               )),
                           SizedBox(height: 40),

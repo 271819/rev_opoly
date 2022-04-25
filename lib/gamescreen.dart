@@ -3315,10 +3315,19 @@ class _GameScreenState extends State<GameScreen> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text(winner, style: TextStyle(fontSize: 30)),
+              title: Text(winner, style: TextStyle(fontSize: 30,fontFamily:'Brush font')),
               content: new Container(
-                height: 250,
+                height: 400,
                 width: 500,
+                //  constraints: BoxConstraints.expand(),
+               decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/congrats.gif"),
+                fit: BoxFit.fill,
+                // colorFilter: ColorFilter.mode(
+                //     Colors.black.withOpacity(0.9), BlendMode.dstATop)
+                    ),
+          ),
                 child: SingleChildScrollView(
                   child: Row(
                     children: [
@@ -3334,6 +3343,7 @@ class _GameScreenState extends State<GameScreen> {
                                     playertechnology[index]["playertechnology"],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.white,
                                     )));
                           })
                         )),
@@ -3351,6 +3361,7 @@ class _GameScreenState extends State<GameScreen> {
                                 child:Text(bottechnology[index]["bottechnology"],
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
+                                          color: Colors.white,
                                 )));
                           })))
                   ]),
