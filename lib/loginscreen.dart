@@ -250,7 +250,8 @@ class _LoginScreenState extends State<LoginScreen> {
             datereg: userdata[2],
             score: userdata[3],
             money: userdata[4],
-            matric:userdata[5]);
+            matric:userdata[5],
+            imgstatus:userdata[6]);
             
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (content) => HomeScreen(user: user)));
