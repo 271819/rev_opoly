@@ -104,6 +104,7 @@ class _ProfileState extends State<Profile> {
                                 //   // borderRadius: BorderRadius.circular(20.0),
                                 // ),
 
+
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10.0),
                                   child: widget.user.imgstatus == "no"
