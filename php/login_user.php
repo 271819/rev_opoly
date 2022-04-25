@@ -11,7 +11,7 @@ $result = $conn ->query($sqllogin);
 
 if($result->num_rows>0){
     while($row = $result ->fetch_assoc()){
-        echo $data = "success,".$row["name"].",".$row["date_reg"].",".$row["score"].",".$row["money"].",".$row["phone"];
+        echo $data = "success,".$row["name"].",".$row["date_reg"].",".$row["score"].",".$row["money"].",".$row["matric"].",".$row["imgstatus"];
     }
 }else{
     echo "failed";

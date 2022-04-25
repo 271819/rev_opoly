@@ -16,13 +16,16 @@ $passha1 = sha1($password);
 $otp = rand(1000,9999);
 $money ="15000";
 $status = "active";
+$imgstatus = "no";
 
 $sqlbotregister = "INSERT INTO tbl_bot(user_email,money) VALUES('$user_email','$money')";
 if ($conn->query($sqlbotregister) === TRUE){
 }
 
-$sqlregister = "INSERT INTO tbl_user(name,user_email,password,otp,money) VALUES('$name','$user_email','$passha1','$otp','$money')";
+$sqlregister = "INSERT INTO tbl_user(name,user_email,password,otp,money,imgstatus) VALUES('$name','$user_email','$passha1','$otp','$money','$imgstatus')";
 if ($conn->query($sqlregister) === TRUE){
+
+        
     echo "success";
     // sendEmail($otp,$user_email);
 }else{
