@@ -29,10 +29,10 @@ class _GameScreenState extends State<GameScreen> {
   bool botturn = false;
   int totalup = 0, totalleft = 0, totaldice = 0, totalstep = 0;
   int bottotalup = 0, bottotalleft = 0, bottotaldice = 0, bottotalstep = 0;
-  double boxwidth = 63, boxheight = 47;
-  double botboxwidth = 63, botboxheight = 47;
+  // double boxwidth = 63, boxheight = 47;
+  // double botboxwidth = 63, botboxheight = 47;
   bool whoturn = true;
-  List botdetails;
+  List botdetails =[];
   List bottechnology, playertechnology;
   void dice() {
     if (playerturn == true) {
@@ -70,6 +70,7 @@ class _GameScreenState extends State<GameScreen> {
         playerturn = false;
         botturn = true;
       });
+      
       if (totalstep == 1 ||
           totalstep == 3 ||
           totalstep == 6 ||
@@ -176,15 +177,21 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   void initState() {
+    super.initState();
     _loadbotdetails();
      _loadplayertechnology();
      _loadbottechnology();
-    super.initState();
+    
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
   }
-
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double boxwidth = screenWidth/11.7; //63;
+    double boxheight = screenHeight/8.34; //47;
+    double botboxwidth = screenWidth/11.7; //63;
+    double botboxheight = screenHeight/8.34; //47;
     return Scaffold(
       body: Stack(children: <Widget>[
         Container(
@@ -199,12 +206,12 @@ class _GameScreenState extends State<GameScreen> {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(height: 15),
+                    SizedBox(height: screenHeight/28), //15
                     Container(
                       child: Row(
                         children: [
                           Container(
-                            width: 80,
+                            width: screenWidth/9.2, //80
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: IconButton(
@@ -221,20 +228,20 @@ class _GameScreenState extends State<GameScreen> {
                               child: Row(
                                 children: [
                                   Container(
-                                      width: 80,
+                                      width: screenWidth/9.2, //80
                                       child:
                                           Text(widget.user.name.toUpperCase(),
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                               ))),
                                   Container(
-                                      width: 85,
+                                      width: screenWidth/8.67, //85
                                       child: Text("Score: " + widget.user.score,
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                           ))),
                                   Container(
-                                      width: 120,
+                                      width: screenWidth/6.14,//120
                                       child: Text("Money: " + widget.user.money,
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
@@ -243,9 +250,10 @@ class _GameScreenState extends State<GameScreen> {
                               ),
                               onTap: () {
                                 _playertechnology();
+                                print(screenWidth);
                               }),
                           Container(
-                              width: 70,
+                              width: screenWidth/10.5, //70
                               child: Text("VS",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -259,13 +267,13 @@ class _GameScreenState extends State<GameScreen> {
                                   return Row(
                                     children: [
                                       Container(
-                                          width: 85,
+                                          width: screenWidth/8.67, //85
                                           child: Text("Bot",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                               ))),
                                       Container(
-                                          width: 90,
+                                          width: screenWidth/8.18, //90
                                           child: Text(
                                               "Score: " +
                                                   botdetails[index]['score'],
@@ -273,7 +281,7 @@ class _GameScreenState extends State<GameScreen> {
                                                 fontWeight: FontWeight.bold,
                                               ))),
                                       Container(
-                                        width: 120,
+                                        width: screenWidth/6.17, //120
                                         child: Text(
                                             "Money: " +
                                                 botdetails[index]["money"],
@@ -295,8 +303,8 @@ class _GameScreenState extends State<GameScreen> {
                         child: Row(
                       children: [
                         Container(
-                          height: 70, 
-                          width: 82,
+                          height: screenHeight/5.6, //70
+                          width: screenWidth/8.98, //82
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/digital.JPG'),
@@ -305,8 +313,8 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         Container(
-                          height: 70,
-                          width: 63,
+                          height: screenHeight/5.6,  //70
+                          width: screenWidth/11.69,  //63
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image:
@@ -316,8 +324,8 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         Container(
-                          height: 70,
-                          width: 63,
+                          height: screenHeight/5.6,  //70
+                          width: screenWidth/11.69,  //63
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/chance.png'),
@@ -326,8 +334,8 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         Container(
-                          height: 70,
-                          width: 63,
+                          height: screenHeight/5.6,  //70
+                          width: screenWidth/11.69,  //63
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/ar.png'),
@@ -336,8 +344,8 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         Container(
-                          height: 70,
-                          width: 63,
+                          height: screenHeight/5.6,  //70
+                          width: screenWidth/11.69,  //63
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/bigData.png'),
@@ -346,8 +354,8 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         Container(
-                          height: 70,
-                          width: 63,
+                          height: screenHeight/5.6,  //70
+                          width: screenWidth/11.69,  //63
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/smartcity.JPG'),
@@ -356,8 +364,8 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         Container(
-                          height: 70,
-                          width: 63,
+                          height: screenHeight/5.6,  //70
+                          width: screenWidth/11.69,  //63
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/iotcity.png'),
@@ -366,8 +374,8 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         Container(
-                          height: 70,
-                          width: 63,
+                          height: screenHeight/5.6,  //70
+                          width: screenWidth/11.69,  //63
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/iotRetail.png'),
@@ -376,8 +384,8 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         Container(
-                          height: 70,
-                          width: 63,
+                          height: screenHeight/5.6,  //70
+                          width: screenWidth/11.69,  //63
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/inventor.JPG'),
@@ -386,8 +394,8 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         Container(
-                          height: 70,
-                          width: 63,
+                          height: screenHeight/5.6,  //70
+                          width: screenWidth/11.69,  //63
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/iotHealth.png'),
@@ -396,8 +404,8 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ),
                         Container(
-                          height: 70,
-                          width: 86,
+                          height: screenHeight/5.6,  //70
+                          width: screenWidth/8.57,  //86
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/back.JPG'),
@@ -412,8 +420,8 @@ class _GameScreenState extends State<GameScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            height: 47,
-                            width: 82,
+                            height: screenHeight/8.34, //47
+                            width: screenWidth/9,  //82
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/iotGrid.png'),
@@ -422,8 +430,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 47,
-                            width: 82,
+                            height: screenHeight/8.34, //47
+                            width: screenWidth/9,  //82
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage(
@@ -440,8 +448,8 @@ class _GameScreenState extends State<GameScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            height: 47,
-                            width: 82,
+                            height: screenHeight/8.34, //47
+                            width: screenWidth/9,  //82
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/iotHome.png'),
@@ -450,8 +458,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 47,
-                            width: 82,
+                            height: screenHeight/8.34, //47
+                            width: screenWidth/9,  //82
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage(
@@ -468,8 +476,8 @@ class _GameScreenState extends State<GameScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            height: 47,
-                            width: 82,
+                            height: screenHeight/8.34, //47
+                            width: screenWidth/9,  //82
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image:
@@ -479,8 +487,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 47,
-                            width: 82,
+                            height: screenHeight/8.34, //47
+                            width: screenWidth/9,  //82
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/chancee.png'),
@@ -496,8 +504,8 @@ class _GameScreenState extends State<GameScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            height: 46,
-                            width: 82,
+                            height: screenHeight/8.34, //47
+                            width: screenWidth/9,  //82
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage(
@@ -507,8 +515,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 46,
-                            width: 82,
+                            height: screenHeight/8.34, //47
+                            width: screenWidth/9,  //82
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/iotAgri.png'),
@@ -524,8 +532,8 @@ class _GameScreenState extends State<GameScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            height: 71,
-                            width: 85,
+                            height: screenHeight/5.52, //71
+                            width: screenWidth/8.67,  //85
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/stone.JPG'),
@@ -534,8 +542,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 70,
-                            width: 63,
+                            height: screenHeight/5.67, //70
+                            width: screenWidth/11.7,  //63
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/future.png'),
@@ -544,8 +552,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 70,
-                            width: 63,
+                            height: screenHeight/5.67, //70
+                            width: screenWidth/11.7,  //63
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/ir4.png'),
@@ -554,8 +562,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 70,
-                            width: 63,
+                            height: screenHeight/5.67, //70
+                            width: screenWidth/11.7,  //63
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/chance.png'),
@@ -564,8 +572,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 70,
-                            width: 63,
+                            height: screenHeight/5.67, //70
+                            width: screenWidth/11.7,  //63
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/ir3.png'),
@@ -574,8 +582,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 70,
-                            width: 63,
+                            height: screenHeight/5.67, //70
+                            width: screenWidth/11.7,  //63
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image:
@@ -585,8 +593,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 70,
-                            width: 63,
+                            height: screenHeight/5.67, //70
+                            width: screenWidth/11.7,  //63
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image:
@@ -596,8 +604,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 70,
-                            width: 63,
+                            height: screenHeight/5.67, //70
+                            width: screenWidth/11.7,  //63
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/ir2.png'),
@@ -606,8 +614,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 70,
-                            width: 63,
+                            height: screenHeight/5.67, //70
+                            width: screenWidth/11.7,  //63
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image:
@@ -617,8 +625,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 70,
-                            width: 63,
+                            height: screenHeight/5.67, //70
+                            width: screenWidth/11.7,  //63
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/ir1.png'),
@@ -627,8 +635,8 @@ class _GameScreenState extends State<GameScreen> {
                             ),
                           ),
                           Container(
-                            height: 70,
-                            width: 83,
+                            height: screenHeight/5.67, //70
+                            width: screenWidth/8.9,  //83
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: AssetImage('assets/images/Go.JPG'),
@@ -644,11 +652,11 @@ class _GameScreenState extends State<GameScreen> {
           ),
         ),
         Positioned(
-          top: 310 - (totalup) * boxheight,
-          left: 680 - (totalleft) * boxwidth,
+          top: screenHeight/1.260 - (totalup) * boxheight,  //310
+          left: screenWidth/1.08 - (totalleft) * boxwidth, //680
           child: Container(
-            height: 50,
-            width: 30,
+            height: screenHeight/7.84, //50
+            width: screenWidth/24.57, //30
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/player.png'),
@@ -658,11 +666,11 @@ class _GameScreenState extends State<GameScreen> {
           ),
         ),
         Positioned(
-            top: 310 - (bottotalup) * boxheight,
-            left: 670 - (bottotalleft) * boxwidth,
+            top: screenHeight/1.260 - (bottotalup) * boxheight,
+            left: screenWidth/1.1 - (bottotalleft) * boxwidth, //670
             child: Container(
-              height: 50,
-              width: 30,
+              height: screenHeight/7.84, //50
+              width: screenWidth/24.57, //30
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/images/bot.png'),
@@ -671,14 +679,14 @@ class _GameScreenState extends State<GameScreen> {
               ),
             )),
         Positioned(
-          top: 190,
-          left: 300,
+          top: screenHeight/2.06, //190
+          left: screenWidth/2.46, //300
           child: InkWell(
               child: Row(
                 children: [
                   Container(
-                    height: 70,
-                    width: 70,
+                    height: screenHeight/5.6, //70
+                    width: screenWidth/10.5,  //70
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/images/dice$leftdice_no.jpg'),
@@ -687,8 +695,8 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                   ),
                   Container(
-                    height: 70,
-                    width: 70,
+                    height: screenHeight/5.6, //70
+                    width: screenWidth/10.5,  //70
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image:
@@ -712,6 +720,8 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void irquestion(int totalstep, bool whoturn) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     TextEditingController _iranswer = new TextEditingController();
     int image = Random().nextInt(15) + 1;
     int updatemoney;
@@ -747,22 +757,24 @@ class _GameScreenState extends State<GameScreen> {
     }
     _checktechnology(text,whoturn,rentmoney);
     if (whoturn == true) {
+
       showDialog(
         context: context,
         builder: (BuildContext context) {
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + text,
                 style: TextStyle(fontSize: 22)),
             scrollable: true,
             content: new Container(
               // height: 30,
-              width: 450,
+              width: screenWidth/1.64,  //450
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Container(
-                      height: 210,
-                      width: 340,
+                      height: screenHeight/1.87, //210
+                      width: screenWidth/2.17,  //340
                       child: CachedNetworkImage(
                         imageUrl:
                             "https://javathree99.com/s271819/revopoly/images/ir_question/$i${image}.png",
@@ -790,13 +802,15 @@ class _GameScreenState extends State<GameScreen> {
                   Navigator.of(context).pop();
                   _irAnswer(_iranswer.text.toString(), image, updatemoney, text,
                       whoturn);
+                      SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                 },
               ),
               TextButton(
-                  child: Text("Cancel"),
+                  child: Text("I don't know"),
                   onPressed: () {
                     Navigator.of(context).pop();
                     _updatemoney(-100);
+                    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                   }),
             ],
             backgroundColor: Colors.grey,
@@ -807,19 +821,20 @@ class _GameScreenState extends State<GameScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + text,
                 style: TextStyle(fontSize: 22)),
             scrollable: true,
             content: new Container(
               // height: 30,
-              width: 450,
+              width: screenWidth/1.64,  //450
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Container(
-                      height: 210,
-                      width: 340,
+                      height: screenHeight/1.87, //210
+                      width: screenWidth/2.17,  //340
                       child: CachedNetworkImage(
                         imageUrl:
                             "https://javathree99.com/s271819/revopoly/images/ir_question/$i${image}.png",
@@ -845,13 +860,15 @@ class _GameScreenState extends State<GameScreen> {
                   Navigator.of(context).pop();
                   _irAnswer(_iranswer.text.toString(), image, updatemoney, text,
                       whoturn);
+                      SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                 },
               ),
               TextButton(
-                  child: Text("Cancel"),
+                  child: Text("I don't know"),
                   onPressed: () {
                     Navigator.of(context).pop();
                     _updatemoney(-100);
+                    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                   }),
             ],
             backgroundColor: Colors.red,
@@ -1314,7 +1331,8 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _irmessage(String ans, bool noanswer, int updatemoney, bool whoturn, String text) {
-
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     String title;
     if (noanswer == true) {
       title = "Congratulation!!!";
@@ -1329,8 +1347,8 @@ class _GameScreenState extends State<GameScreen> {
               return AlertDialog(
                 title: Text(title, style: TextStyle(fontSize: 30)),
                 content: new Container(
-                  height: 300,
-                  width: 450,
+                  height: screenHeight/1.31, //300
+                  width: screenWidth/1.64, //450
                   child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -1345,6 +1363,7 @@ class _GameScreenState extends State<GameScreen> {
                       child: Text("OK"),
                       onPressed: () {
                         Navigator.of(context).pop();
+                        SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                       }),
                 ],
               );
@@ -1400,6 +1419,8 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void didyouknow(int totalstep) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     int image = Random().nextInt(15) + 1;
     int i;
     if (image < 10) {
@@ -1413,13 +1434,15 @@ class _GameScreenState extends State<GameScreen> {
         return AlertDialog(
           title: Text("Did you know ?", style: TextStyle(fontSize: 22)),
           content: new Container(
-            height: 300,
-            width: 450,
+            height: screenHeight/1.31, //300
+            width: screenWidth/1.64, //450
+            child:SingleChildScrollView(
             child: Column(
               children: [
                 Container(
-                  height: 160,
-                  width: 340,
+                  
+                  height: screenHeight/2.45,  //160
+                  width: screenWidth/2.17, //340
                   child: CachedNetworkImage(
                     imageUrl:
                         "https://javathree99.com/s271819/revopoly/images/did_you_know/$i${image}.png",
@@ -1427,14 +1450,17 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                 ),
               ],
-            ),
+             ) ),
           ),
           actions: [
-            TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                }),
+            Container(
+              height:screenHeight/13,
+              child: TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+            ),
           ],
         );
       },
@@ -1442,6 +1468,8 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void chance(int totalstep, bool whoturn) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     int image = Random().nextInt(15) + 1;
     int i;
     if (image < 10) {
@@ -1457,13 +1485,14 @@ class _GameScreenState extends State<GameScreen> {
           return AlertDialog(
             title: Text("Your Chance", style: TextStyle(fontSize: 22)),
             content: new Container(
-              height: 300,
-              width: 450,
+              height: screenHeight/1.31, //300
+                  width: screenWidth/1.64, //450
+                  child: SingleChildScrollView(
               child: Column(
                 children: [
                   Container(
-                    height: 160,
-                    width: 340,
+                     height: screenHeight/2.45,  //160
+                  width: screenWidth/2.17, //340
                     child: CachedNetworkImage(
                       imageUrl:
                           "https://javathree99.com/s271819/revopoly/images/chance/$i${image}.png",
@@ -1471,15 +1500,18 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                   ),
                 ],
-              ),
+              ),)
             ),
             actions: [
-              TextButton(
-                  child: Text("OK"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    chancemessage(image, whoturn);
-                  }),
+              Container(
+                height:screenHeight/13,
+                child: TextButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      chancemessage(image, whoturn);
+                    }),
+              ),
             ],
             backgroundColor: Colors.grey,
           );
@@ -1492,13 +1524,14 @@ class _GameScreenState extends State<GameScreen> {
           return AlertDialog(
             title: Text("Your Chance", style: TextStyle(fontSize: 22)),
             content: new Container(
-              height: 300,
-              width: 450,
+              height: screenHeight/1.31, //300
+                  width: screenWidth/1.64, //450
+                  child:SingleChildScrollView(
               child: Column(
                 children: [
                   Container(
-                    height: 160,
-                    width: 340,
+                     height: screenHeight/2.45,  //160
+                  width: screenWidth/2.17, //340
                     child: CachedNetworkImage(
                       imageUrl:
                           "https://javathree99.com/s271819/revopoly/images/chance/$i${image}.png",
@@ -1507,14 +1540,17 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                 ],
               ),
-            ),
+            ),),
             actions: [
-              TextButton(
-                  child: Text("OK"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    chancemessage(image, whoturn);
-                  }),
+              Container(
+                height:screenHeight/13,
+                child: TextButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      chancemessage(image, whoturn);
+                    }),
+              ),
             ],
             backgroundColor: Colors.red,
           );
@@ -1638,6 +1674,8 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void inventor3(int totalstep, bool whoturn) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     if(whoturn==true){
     showDialog(
       context: context,
@@ -1645,13 +1683,14 @@ class _GameScreenState extends State<GameScreen> {
         return AlertDialog(
           title: Text("Inventor", style: TextStyle(fontSize: 22)),
           content: new Container(
-            height: 300,
-            width: 450,
+             height: screenHeight/1.31, //300
+                  width: screenWidth/1.64, //450
+                  child: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
-                  height: 160,
-                  width: 200,
+                  height: screenHeight/2.45, //160,
+                  width: screenWidth/5.26, //140,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/images/inventor3.JPG'),
@@ -1660,19 +1699,22 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                 ),
               ],
-            ),
+            ),)
           ),
           actions: [
-            TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  if (whoturn == true) {
-                    _updatemoney(-2000);
-                  } else {
-                    _updatebotmoney(-2000);
-                  }
-                }),
+            Container(
+              height: screenHeight/13,
+              child: TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    if (whoturn == true) {
+                      _updatemoney(-2000);
+                    } else {
+                      _updatebotmoney(-2000);
+                    }
+                  }),
+            ),
           ],
           backgroundColor: Colors.grey,
         );
@@ -1683,15 +1725,16 @@ class _GameScreenState extends State<GameScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Inventor", style: TextStyle(fontSize: 22)),
+          title: Text("Inventor", style: TextStyle(fontSize: screenHeight/17.8)), //22
           content: new Container(
-            height: 300,
-            width: 450,
+             height: screenHeight/1.31, //392
+                  width: screenWidth/1.84, //400
+                  child: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
-                  height: 160,
-                  width: 200,
+                  height: screenHeight/2.45, //200,
+                  width: screenWidth/5.26, //140,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/images/inventor3.JPG'),
@@ -1700,19 +1743,22 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                 ),
               ],
-            ),
+            ),)
           ),
           actions: [
-            TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  if (whoturn == true) {
-                    _updatemoney(-2000);
-                  } else {
-                    _updatebotmoney(-2000);
-                  }
-                }),
+            Container(
+              height: screenHeight/13,
+              child: TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    if (whoturn == true) {
+                      _updatemoney(-2000);
+                    } else {
+                      _updatebotmoney(-2000);
+                    }
+                  }),
+            ),
           ],
           backgroundColor: Colors.red,
         );
@@ -1722,20 +1768,22 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void inventor23(int totalstep, bool whoturn) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     if(whoturn==true){
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Your Chance", style: TextStyle(fontSize: 22)),
+          title: Text("Inventor", style: TextStyle(fontSize: 22)),
           content: new Container(
-            height: 300,
-            width: 450,
+            height: screenHeight/1.31, //392
+                  width: screenWidth/1.84, //400
             child: Column(
               children: [
                 Container(
-                  height: 160,
-                  width: 200,
+                  height: screenHeight/2.45, //160,
+                  width: screenWidth/5.26, //140,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/images/inventor.JPG'),
@@ -1747,16 +1795,19 @@ class _GameScreenState extends State<GameScreen> {
             ),
           ),
           actions: [
-            TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  if (whoturn == true) {
-                    _updatemoney(-2000);
-                  } else {
-                    _updatebotmoney(-2000);
-                  }
-                }),
+            Container(
+              height:screenHeight/13,
+              child: TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    if (whoturn == true) {
+                      _updatemoney(-2000);
+                    } else {
+                      _updatebotmoney(-2000);
+                    }
+                  }),
+            ),
           ],
           backgroundColor: Colors.grey,
         );
@@ -1767,15 +1818,15 @@ class _GameScreenState extends State<GameScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Your Chance", style: TextStyle(fontSize: 22)),
+          title: Text("Inventor", style: TextStyle(fontSize: 22)),
           content: new Container(
-            height: 300,
-            width: 450,
+            height: screenHeight/1.31, //392
+                  width: screenWidth/1.84, //400
             child: Column(
               children: [
                 Container(
-                  height: 160,
-                  width: 200,
+                  height: screenHeight/2.45, //160,
+                  width: screenWidth/5.26, //140,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/images/inventor.JPG'),
@@ -1787,16 +1838,19 @@ class _GameScreenState extends State<GameScreen> {
             ),
           ),
           actions: [
-            TextButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  if (whoturn == true) {
-                    _updatemoney(-2000);
-                  } else {
-                    _updatebotmoney(-2000);
-                  }
-                }),
+            Container(
+              height:screenHeight/13,
+              child: TextButton(
+                  child: Text("OK"),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    if (whoturn == true) {
+                      _updatemoney(-2000);
+                    } else {
+                      _updatebotmoney(-2000);
+                    }
+                  }),
+            ),
           ],
           backgroundColor: Colors.red,
         );
@@ -1806,6 +1860,8 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void technologyquestion(int totalstep, bool whoturn) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     TextEditingController _iranswer = new TextEditingController();
     int image = Random().nextInt(15) + 1;
     int updatemoney;
@@ -1880,19 +1936,20 @@ class _GameScreenState extends State<GameScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + technology.toString(),
                 style: TextStyle(fontSize: 22)),
             scrollable: true,
             content: new Container(
               // height: 30,
-              width: 450,
+              width: screenWidth/1.64, //450,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Container(
-                      height: 210,
-                      width: 340,
+                      height: screenHeight/1.87, //210,
+                      width: screenWidth/2.17, //340,
                       child: CachedNetworkImage(
                         imageUrl:
                             "https://javathree99.com/s271819/revopoly/images/technology/$i${image}.png",
@@ -1918,13 +1975,15 @@ class _GameScreenState extends State<GameScreen> {
                   Navigator.of(context).pop();
                   _technologyAnswer(_iranswer.text.toString(), image,
                       updatemoney, technology, whoturn);
+                      SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                 },
               ),
               TextButton(
-                  child: Text("Cancel"),
+                  child: Text("I don't know"),
                   onPressed: () {
                     Navigator.of(context).pop();
                     _updatemoney(-100);
+                    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                   }),
             ],
             backgroundColor: Colors.grey,
@@ -1935,19 +1994,20 @@ class _GameScreenState extends State<GameScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + technology.toString(),
                 style: TextStyle(fontSize: 22)),
             scrollable: true,
             content: new Container(
               // height: 30,
-              width: 450,
+              width: screenWidth/1.64, //450,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Container(
-                      height: 210,
-                      width: 340,
+                      height: screenHeight/1.87, //210,
+                      width: screenWidth/2.17, //340,
                       child: CachedNetworkImage(
                         imageUrl:
                             "https://javathree99.com/s271819/revopoly/images/technology/$i${image}.png",
@@ -1973,13 +2033,15 @@ class _GameScreenState extends State<GameScreen> {
                   Navigator.of(context).pop();
                   _technologyAnswer(_iranswer.text.toString(), image,
                       updatemoney, technology, whoturn);
+                       SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                 },
               ),
               TextButton(
-                  child: Text("Cancel"),
+                  child: Text("I don't know"),
                   onPressed: () {
                     Navigator.of(context).pop();
                     _updatemoney(-100);
+                     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                   }),
             ],
             backgroundColor: Colors.red,
@@ -2774,6 +2836,9 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _technologymessage(String ans, bool noanswer, int updatemoney,String technology, bool whoturn) {
+    
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     String title;
     if (noanswer == true) {
       title = "Congratulation!!!";
@@ -2788,8 +2853,8 @@ class _GameScreenState extends State<GameScreen> {
               return AlertDialog(
                 title: Text(title, style: TextStyle(fontSize: 30)),
                 content: new Container(
-                  height: 300,
-                  width: 450,
+                 height: screenHeight/1.31, //300
+                  width: screenWidth/1.64, //450
                   child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -2804,6 +2869,7 @@ class _GameScreenState extends State<GameScreen> {
                       child: Text("OK"),
                       onPressed: () {
                         Navigator.of(context).pop();
+                        SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                       }),
                 ],
               );
@@ -2886,6 +2952,8 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _bottechnology() {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     _loadbottechnology();
 
     showDialog(
@@ -2894,8 +2962,8 @@ class _GameScreenState extends State<GameScreen> {
         return AlertDialog(
           title: Text("Bot Technology", style: TextStyle(fontSize: 22)),
           content: new Container(
-            height: 250,
-            width: 100,
+            height:screenHeight/1.568, //250,
+            width: screenWidth/7.37, //100,
             child: SingleChildScrollView(
               child: Row(children: [
                 bottechnology == null
@@ -2927,6 +2995,8 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _playertechnology() {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     _loadplayertechnology();
     showDialog(
       context: context,
@@ -2934,8 +3004,8 @@ class _GameScreenState extends State<GameScreen> {
         return AlertDialog(
           title: Text("Player Technology", style: TextStyle(fontSize: 22)),
           content: new Container(
-            height: 250,
-            width: 100,
+            height:screenHeight/1.568, //250,
+            width: screenWidth/7.37, //100,
             child: SingleChildScrollView(
               child: Row(children: [
                 playertechnology == null
@@ -2994,7 +3064,6 @@ class _GameScreenState extends State<GameScreen> {
           "email": widget.user.email,
         }).then((response) {
       if (response.body == "nodata") {
-        // print("helloasdf");
         return;
       } else {
         setState(() {
@@ -3007,14 +3076,16 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _backbutton() {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text("Exit the game", style: TextStyle(fontSize: 22)),
             content: new Container(
-              height: 300,
-              width: 250,
+              height: screenHeight/1.3, //300
+              width: screenWidth/2.95,  //250
               child: Column(
                 children: [
                   Container(
@@ -3039,7 +3110,7 @@ class _GameScreenState extends State<GameScreen> {
                             builder: (content) =>
                                 HomeScreen(user: widget.user)));
                     SystemChrome.setPreferredOrientations([
-                      DeviceOrientation.portraitUp,
+                      DeviceOrientation.portraitDown,
                       DeviceOrientation.portraitUp
                     ]);
                   }),
@@ -3060,81 +3131,6 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
-  // void _endgame(String user) {
-  //   String text;
-  //   if(user=="bot"){
-  //      text = "Player Win";
-  //   }else{
-  //     text = "Bot Win";
-  //   }
-  //  setState(() {
-  //     showDialog(
-  //         context: context,
-  //         builder: (BuildContext context) {
-  //           return AlertDialog(
-  //             title: Text(text, style: TextStyle(fontSize: 30)),
-  //             content: new Container(
-  //               height: 250,
-  //               width: 500,
-  //               child: SingleChildScrollView(
-  //                 child: Row(
-  //                   children: [
-  //                   SizedBox(width: 25),
-  //                   playertechnology == null
-  //                       ? Flexible(
-  //                           child: Center(child: Text("No technology Found")))
-  //                       : Flexible(
-  //                           child: Column(
-  //                               children: List.generate(playertechnology.length,(index) {
-  //                           return Container(
-  //                               child: Text(
-  //                                   playertechnology[index]["playertechnology"],
-  //                                   style: TextStyle(
-  //                                     fontWeight: FontWeight.bold,
-  //                                   )));
-  //                         })
-  //                       )),
-
-//                   SizedBox(width: 110),
-//                   //  Text("Bot Technology"),
-//                   bottechnology == null
-//                       ? Flexible(
-//                           child: Center(child: Text("No technology Found")))
-//                       : Flexible(
-//                           child: Column(
-//                               children: List.generate(bottechnology.length,
-//                                   (index) {
-//                           return Container(
-//                               child:Text(bottechnology[index]["bottechnology"],
-//                                       style: TextStyle(
-//                                         fontWeight: FontWeight.bold,
-//                               )));
-//                         })))
-  //                 ]),
-  //               ),
-  //             ),
-  //             actions: [
-  //               TextButton(
-  //                   child: Text("OK"),
-  //                   onPressed: () {
-  //                     _resetgame();
-  //                     Navigator.push(
-  //                         context,
-  //                         MaterialPageRoute(
-  //                             builder: (content) =>
-  //                                 HomeScreen(user: widget.user)));
-  //                     SystemChrome.setPreferredOrientations([
-  //                       DeviceOrientation.portraitUp,
-  //                       DeviceOrientation.portraitUp
-  //                     ]);
-  //                   }),
-  //             ],
-  //           );
-  //         });
-  //   });
-  
-  // }
-
   void _checktechnology(String checktechnology, bool whoturn, int rentmoney) {
     print(checktechnology);
      http.post(
@@ -3152,13 +3148,15 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _existtechnology(String whotechnology, bool whoturn, int rentmoney) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     String name;
     if(whotechnology == "player"){
       name = widget.user.name;
     }else{
       name = "bot";
     }
-
+// SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
     if(whoturn == true && whotechnology =="player"){ //player turns and technology bought by player
     setState(() {
       showDialog(
@@ -3170,7 +3168,7 @@ class _GameScreenState extends State<GameScreen> {
             scrollable: true,
             content: new Container(
               // height: 30,
-              width: 450,
+              width: screenHeight/0.87, //450
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -3185,6 +3183,7 @@ class _GameScreenState extends State<GameScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();
+                    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                   }),
             ],
             backgroundColor: Colors.grey,
@@ -3203,7 +3202,7 @@ class _GameScreenState extends State<GameScreen> {
             scrollable: true,
             content: new Container(
               // height: 30,
-              width: 450,
+              width: screenHeight/0.87, //450
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -3220,6 +3219,7 @@ class _GameScreenState extends State<GameScreen> {
                     Navigator.of(context).pop();
                      _updatemoney(-rentmoney);
                      _updatebotmoney(rentmoney);
+                     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                   }),
             ],
             backgroundColor: Colors.grey,
@@ -3238,7 +3238,7 @@ class _GameScreenState extends State<GameScreen> {
             scrollable: true,
             content: new Container(
               // height: 30,
-              width: 450,
+              width: screenHeight/0.87, //450
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -3255,6 +3255,7 @@ class _GameScreenState extends State<GameScreen> {
                     Navigator.of(context).pop();
                     _updatemoney(rentmoney);
                     _updatebotmoney(-rentmoney);
+                    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                   }),
             ],
             backgroundColor: Colors.red,
@@ -3273,7 +3274,7 @@ class _GameScreenState extends State<GameScreen> {
             scrollable: true,
             content: new Container(
               // height: 30,
-              width: 450,
+              width: screenHeight/0.87, //450
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -3288,6 +3289,7 @@ class _GameScreenState extends State<GameScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();
+                    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                   }),
             ],
             backgroundColor: Colors.red,
@@ -3296,12 +3298,11 @@ class _GameScreenState extends State<GameScreen> {
       );
     });
     }
-
-
-
   }
 
   void _giveup() {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     String winner;
     if(int.parse(botdetails[0]["score"]) > int.parse(widget.user.score)){
       winner = "Bot Win";
@@ -3317,21 +3318,21 @@ class _GameScreenState extends State<GameScreen> {
             return AlertDialog(
               title: Text(winner, style: TextStyle(fontSize: 30,fontFamily:'Brush font')),
               content: new Container(
-                height: 400,
-                width: 500,
-                //  constraints: BoxConstraints.expand(),
+                height: screenHeight/0.98, //400,
+                width: screenWidth/1.474, //500,
+                 constraints: BoxConstraints.expand(),
                decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/congrats.gif"),
                 fit: BoxFit.fill,
-                // colorFilter: ColorFilter.mode(
-                //     Colors.black.withOpacity(0.9), BlendMode.dstATop)
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.9), BlendMode.dstATop)
                     ),
           ),
                 child: SingleChildScrollView(
                   child: Row(
                     children: [
-                    SizedBox(width: 25),
+                    SizedBox(width: screenWidth/29.5), //25
                     playertechnology == null
                         ? Flexible(
                             child: Center(child: Text("No technology Found")))
@@ -3348,7 +3349,7 @@ class _GameScreenState extends State<GameScreen> {
                           })
                         )),
 
-                    SizedBox(width: 110),
+                    SizedBox(width: screenWidth/6.7), //110
                     //  Text("Bot Technology"),
                     bottechnology == null
                         ? Flexible(
@@ -3371,7 +3372,7 @@ class _GameScreenState extends State<GameScreen> {
                 TextButton(
                     child: Text("OK"),
                     onPressed: () {
-                      _resetgame();
+                       // // _resetgame();
                       Navigator.push(
                           context,
                           MaterialPageRoute(

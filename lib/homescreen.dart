@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rev_opoly/gamescreen.dart';
 import 'package:rev_opoly/loginscreen.dart';
@@ -16,12 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-     
+      
   }
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
+    return Scaffold(
           body: Container(
             constraints: BoxConstraints.expand(),
             decoration: BoxDecoration(
@@ -92,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Icon(Icons.exit_to_app),
             backgroundColor: Colors.red,
             onPressed: _logout,
-          )),
+          ),
     );
   }
 

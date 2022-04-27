@@ -27,6 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
@@ -208,6 +210,10 @@ class _LoginScreenState extends State<LoginScreen> {
   void _onlogin() {
     String email = _emailController.text.toString();
     String password = _passwordController.text.toString();
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    print(screenWidth.toString()+" n ");
+    print(screenHeight);
     http.post(
         Uri.parse(
             "https://javathree99.com/s271819/revopoly/php/login_user.php"),

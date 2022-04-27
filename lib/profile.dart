@@ -87,8 +87,8 @@ class _ProfileState extends State<Profile> {
                           GestureDetector(
                               onTap: () => {_onUploadPic()},
                               child: Container(
-                                height: 220,
-                                width: 260,
+                                height: screenHeight/3.35,//220,
+                                width: screenWidth/1.5,//260, 
                                 // decoration: BoxDecoration(
                                 //   image: DecorationImage(
                                 //     image: _image == null
@@ -126,12 +126,12 @@ class _ProfileState extends State<Profile> {
                             height: 20,
                             thickness: 5,
                           ),
-                          SizedBox(height: 30),
+                          SizedBox(height: screenHeight/24.5), //30
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Name:   ",
+                                Text("Name: ",
                                     style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
@@ -158,22 +158,22 @@ class _ProfileState extends State<Profile> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: screenHeight/73.7), //10
                           Container(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Matrix No:   ",
+                                Text("Matrix No: ",
                                     style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
                                     )),
                                 Container(
-                                  width: 120,
+                                  width: 90,
                                   child: TextField(
                                     keyboardType: TextInputType.number,
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 25,
                                       fontWeight: FontWeight.bold,
                                     ),
                                     textAlign: TextAlign.center,
@@ -191,19 +191,19 @@ class _ProfileState extends State<Profile> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: screenHeight/36.85), //20
                           Text("Email:  " + widget.user.email,
                               style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               )),
-                          SizedBox(height: 40),
+                          SizedBox(height: screenHeight/18.4), //40
                           MaterialButton(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),
-                            minWidth: 200,
-                            height: 50,
+                            minWidth: screenWidth/1.96,//200
+                            height: screenHeight/14.74, //50
                             color: Colors.blueAccent,
                             child: Text(
                               "Update Information",
@@ -274,7 +274,7 @@ class _ProfileState extends State<Profile> {
   }
 
   Future<void> _updateInformation() async {
-     if(statusImg=="no"){
+     if(statusImg=="no" || _image==null){
         Fluttertoast.showToast(
             msg: "Please click image to choose your profile picture",
             toastLength: Toast.LENGTH_SHORT,
