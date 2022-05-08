@@ -136,7 +136,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
 
   _loaduser(String name) {
     http.post(
-        Uri.parse("https://javathree99.com/s271819/revopoly/php/load_user.php"),
+        Uri.parse("https://hubbuddies.com/271819/revopoly/php/load_user.php"),
         body: {
           'name': name,
         }).then((response) {
@@ -205,7 +205,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
     await pr.show();
      http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/delete_user.php"),
+            "https://hubbuddies.com/271819/revopoly/php/delete_user.php"),
         body: {
           'name': name,
         }).then((response) {
@@ -241,7 +241,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
   }
   _loadUser() {
     http.post(
-        Uri.parse("https://javathree99.com/s271819/revopoly/php/load_user.php"),
+        Uri.parse("https://hubbuddies.com/271819/revopoly/php/load_user.php"),
         body: {
           'name': name,
         }).then((response) {

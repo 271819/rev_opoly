@@ -771,7 +771,7 @@ class _GameScreenState extends State<GameScreen> {
                       width: screenWidth / 2.17, //340
                       child: CachedNetworkImage(
                         imageUrl:
-                            "https://javathree99.com/s271819/revopoly/images/ir_question/$i${image}.png",
+                            "https://hubbuddies.com/271819/revopoly/images/ir_question/$i${image}.png",
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -832,7 +832,7 @@ class _GameScreenState extends State<GameScreen> {
                       width: screenWidth / 2.17, //340
                       child: CachedNetworkImage(
                         imageUrl:
-                            "https://javathree99.com/s271819/revopoly/images/ir_question/$i${image}.png",
+                            "https://hubbuddies.com/271819/revopoly/images/ir_question/$i${image}.png",
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -1473,7 +1473,7 @@ class _GameScreenState extends State<GameScreen> {
     int score = int.parse(widget.user.score);
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/update_score.php"),
+            "https://hubbuddies.com/271819/revopoly/php/update_score.php"),
         body: {
           "email": widget.user.email,
           "score": widget.user.score.toString(),
@@ -1514,7 +1514,7 @@ class _GameScreenState extends State<GameScreen> {
                   width: screenWidth / 2.17, //340
                   child: CachedNetworkImage(
                     imageUrl:
-                        "https://javathree99.com/s271819/revopoly/images/did_you_know/$i${image}.png",
+                        "https://hubbuddies.com/271819/revopoly/images/did_you_know/$i${image}.png",
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -1564,7 +1564,7 @@ class _GameScreenState extends State<GameScreen> {
                         width: screenWidth / 2.17, //340
                         child: CachedNetworkImage(
                           imageUrl:
-                              "https://javathree99.com/s271819/revopoly/images/chance/$i${image}.png",
+                              "https://hubbuddies.com/271819/revopoly/images/chance/$i${image}.png",
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -1603,7 +1603,7 @@ class _GameScreenState extends State<GameScreen> {
                       width: screenWidth / 2.17, //340
                       child: CachedNetworkImage(
                         imageUrl:
-                            "https://javathree99.com/s271819/revopoly/images/chance/$i${image}.png",
+                            "https://hubbuddies.com/271819/revopoly/images/chance/$i${image}.png",
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -1634,7 +1634,7 @@ class _GameScreenState extends State<GameScreen> {
     int currentmoney = int.parse(widget.user.money);
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/update_money.php"),
+            "https://hubbuddies.com/271819/revopoly/php/update_money.php"),
         body: {
           "email": widget.user.email,
           "money": widget.user.money,
@@ -1657,7 +1657,7 @@ class _GameScreenState extends State<GameScreen> {
     print(updatebotmoney);
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/update_botmoney.php"),
+            "https://hubbuddies.com/271819/revopoly/php/update_botmoney.php"),
         body: {
           "email": widget.user.email,
           "money": botdetails[0]["money"],
@@ -1676,7 +1676,7 @@ class _GameScreenState extends State<GameScreen> {
   void _updatebotscore() {
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/update_botscore.php"),
+            "https://hubbuddies.com/271819/revopoly/php/update_botscore.php"),
         body: {
           "email": widget.user.email,
           "score": botdetails[0]["score"],
@@ -2020,7 +2020,7 @@ class _GameScreenState extends State<GameScreen> {
                       width: screenWidth / 2.17, //340,
                       child: CachedNetworkImage(
                         imageUrl:
-                            "https://javathree99.com/s271819/revopoly/images/technology/$i${image}.png",
+                            "https://hubbuddies.com/271819/revopoly/images/technology/$i${image}.png",
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -2080,7 +2080,7 @@ class _GameScreenState extends State<GameScreen> {
                       width: screenWidth / 2.17, //340,
                       child: CachedNetworkImage(
                         imageUrl:
-                            "https://javathree99.com/s271819/revopoly/images/technology/$i${image}.png",
+                            "https://hubbuddies.com/271819/revopoly/images/technology/$i${image}.png",
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -3119,7 +3119,7 @@ class _GameScreenState extends State<GameScreen> {
     print(status);
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/update_technology.php"),
+            "https://hubbuddies.com/271819/revopoly/php/update_technology.php"),
         body: {
           "email": widget.user.email,
           "technology": technology,
@@ -3137,7 +3137,7 @@ class _GameScreenState extends State<GameScreen> {
   void _loadbotdetails() {
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/load_botdetails.php"),
+            "https://hubbuddies.com/271819/revopoly/php/load_botdetails.php"),
         body: {
           "email": widget.user.email,
         }).then((response) {
@@ -3243,7 +3243,7 @@ class _GameScreenState extends State<GameScreen> {
   void _loadbottechnology() {
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/load_bottechnology.php"),
+            "https://hubbuddies.com/271819/revopoly/php/load_bottechnology.php"),
         body: {
           "email": widget.user.email,
         }).then((response) {
@@ -3262,7 +3262,7 @@ class _GameScreenState extends State<GameScreen> {
   void _loadplayertechnology() {
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/load_playertechnology.php"),
+            "https://hubbuddies.com/271819/revopoly/php/load_playertechnology.php"),
         body: {
           "email": widget.user.email,
         }).then((response) {
@@ -3325,7 +3325,7 @@ class _GameScreenState extends State<GameScreen> {
   void _resetgame() {
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/reset_game.php"),
+            "https://hubbuddies.com/271819/revopoly/php/reset_game.php"),
         body: {
           "email": widget.user.email,
         }).then((response) {
@@ -3338,7 +3338,7 @@ class _GameScreenState extends State<GameScreen> {
     print(checktechnology);
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/check_technology.php"),
+            "https://hubbuddies.com/271819/revopoly/php/check_technology.php"),
         body: {
           "technology": checktechnology,
         }).then((response) {

@@ -115,7 +115,7 @@ class _ProfileState extends State<Profile> {
                                       // : Image.network("https://javathree99.com/s271819/revopoly/images/profile/${widget.user.email}.png",fit:BoxFit.fitWidth)
                                       : CachedNetworkImage(
                                           imageUrl:
-                                              "https://javathree99.com/s271819/revopoly/images/profile/${widget.user.email}.png",
+                                              "https://hubbuddies.com/271819/revopoly/images/profile/${widget.user.email}.png",
                                           fit: BoxFit.fill,
                                         ),
                                 ),
@@ -169,7 +169,7 @@ class _ProfileState extends State<Profile> {
                                       fontWeight: FontWeight.bold,
                                     )),
                                 Container(
-                                  width: 90,
+                                  width: screenWidth/3.5,
                                   child: TextField(
                                     keyboardType: TextInputType.number,
                                     style: TextStyle(
@@ -194,7 +194,7 @@ class _ProfileState extends State<Profile> {
                           SizedBox(height: screenHeight/36.85), //20
                           Text("Email:  " + widget.user.email,
                               style: TextStyle(
-                                fontSize: 24,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               )),
                           SizedBox(height: screenHeight/18.4), //40
@@ -295,7 +295,7 @@ class _ProfileState extends State<Profile> {
    
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/update_profile.php"),
+            "https://hubbuddies.com/271819/revopoly/php/update_profile.php"),
         body: {
           "name": name,
           "matric": matric,
@@ -305,7 +305,7 @@ class _ProfileState extends State<Profile> {
       print(response.body);
       if (response.body == "success") {
         CachedNetworkImage.evictFromCache(
-            "https://javathree99.com/s271819/revopoly/images/profile/${widget.user.email}.png");
+            "https://hubbuddies.com/271819/revopoly/images/profile/${widget.user.email}.png");
         Fluttertoast.showToast(
             msg: "Successfully update your Profile !!! ",
             toastLength: Toast.LENGTH_SHORT,

@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "javathre_revopolyadminn";
+$username = "hubbuddi_revopolyadminn";
 $password = "2xmdMYuwMVu9";
-$dbname = "javathre_revopolydb";
+$dbname = "hubbuddi_revopolydb";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn ->connect_error){

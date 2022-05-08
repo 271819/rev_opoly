@@ -3,9 +3,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '/home8/javathre/public_html/s271819/revopoly/php/PHPMailer/Exception.php';
-require '/home8/javathre/public_html/s271819/revopoly/php/PHPMailer/PHPMailer.php';
-require '/home8/javathre/public_html/s271819/revopoly/php/PHPMailer/SMTP.php';
+require '/home8/hubbuddi/public_html/271819/revopoly/php/PHPMailer/Exception.php';
+require '/home8/hubbuddi/public_html/271819/revopoly/php/PHPMailer/PHPMailer.php';
+require '/home8/hubbuddi/public_html/271819/revopoly/php/PHPMailer/SMTP.php';
 
 include_once("dbconnect.php");
 
@@ -32,15 +32,15 @@ function sendEmail($otp,$newpass,$user_email){
     $mail = new PHPMailer(true);
     $mail->SMTPDebug = 0;                                   //Disable verbose debug output
     $mail->isSMTP();                                        //Send using SMTP
-    $mail->Host       = 'mail.javathree99.com';             //Set the SMTP server to send through
+    $mail->Host       = 'mail.hubbuddies.com';             //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                               //Enable SMTP authentication
-    $mail->Username   = 'revopoly@javathree99.com';         //SMTP username
+    $mail->Username   = 'revopoly@hubbuddies.com';         //SMTP username
     $mail->Password   = 'rkBuOnm+.{(b';                     //SMTP password
     $mail->SMTPSecure = 'tls';         
     $mail->Port       = 587;
     
     
-    $from = "revopoly@javathree99.com";
+    $from = "revopoly@hubbuddies.com";
     $to = $user_email;
     $subject = "From REV-OPOLY ON THE GO. Please Verify your account";
     $message = "
@@ -51,7 +51,7 @@ function sendEmail($otp,$newpass,$user_email){
     <h3>Password:".$newpass."</h3><br><br>
     To Complete the process of reset password, simply click the link below to reactivate your account.
     <p>
-    <a href='https://javathree99.com/s271819/revopoly/php/verify_account.php?email=".$user_email."&key=".$otp."'>Click Here to reactivate your account</a>";
+    <a href='https://hubbuddies.com/271819/revopoly/php/verify_account.php?email=".$user_email."&key=".$otp."'>Click Here to reactivate your account</a>";
     
     
     

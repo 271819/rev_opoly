@@ -199,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _resetPassword(String emailreset) {
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/reset_user.php"),
+            "https://hubbuddies.com/271819/revopoly/php/reset_user.php"),
         body: {"email": emailreset}).then((response) {
       print("Email reset " + emailreset);
       print(response.body);
@@ -216,7 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
     print(screenHeight);
     http.post(
         Uri.parse(
-            "https://javathree99.com/s271819/revopoly/php/login_user.php"),
+            "https://hubbuddies.com/271819/revopoly/php/login_user.php"),
         body: {
           "email": email,
           "password": password,

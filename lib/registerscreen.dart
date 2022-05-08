@@ -201,7 +201,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         if (password == passwordb) {
           http.post(
               Uri.parse(
-                  "https://javathree99.com/s271819/revopoly/php/register_user.php"),
+                  "https://hubbuddies.com/271819/revopoly/php/register_user.php"),
               body: {
                 "name": name,
                 "email": email,

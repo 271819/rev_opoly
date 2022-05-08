@@ -96,23 +96,33 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _help() {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            child: AlertDialog(
-              shape: RoundedRectangleBorder(
+    double screenHeight = MediaQuery.of(context).size.height;
+     showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20))),
-              title: Text("Rules of the Game", style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,)),
-              content: Text(
-                  "Player is the black colour and Bot is the red colour. "+"In this game, players are going to click on the dices to roll the dices. \n\n" +
-                      "Players need to answer the question when the character move to the specify picture. " +
-                      "Players can bought the technology when they answer correctly.\n\n"+
-                      "After player moved, followed by bot turn. Player need to answer the question correctly to prevent the technology bought by the bot. "+
-                      "Player need to pay the rent to the bot if the technology is bought by the bot and vice versa. "+
-                      "The person who bought the most technology is the winner.\n\n"+"User can click on the name in the game to know the technology that they had bought. "+
-                      "User also can click on back button to give up the game or save the game"),
-              actions: [
+                title: Text("Rules of the Game", style: TextStyle(fontSize: 30)),
+                content: new Container(
+                    height: screenHeight / 1.9, //300
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Text(
+                            "Player is the black colour and Bot is the red colour. "+"In this game, players are going to click on the dices to roll the dices. \n\n" +
+                            "Players need to answer the question when the character move to the specify picture. " +
+                            "Players can bought the technology when they answer correctly.\n\n"+
+                            "After player moved, followed by bot turn. Player need to answer the question correctly to prevent the technology bought by the bot. "+
+                            "Player need to pay the rent to the bot if the technology is bought by the bot and vice versa. "+
+                            "The person who bought the most technology is the winner.\n\n"+"User can click on the name at the upper part of the game to view the technology that they had bought. "+
+                            "User also can click on back button to give up the game or save the game"),
+                          ),
+                        ],
+                      ),
+                    )),
+               actions: [
                 TextButton(
                   child: Text("OK"),
                   onPressed: () {
@@ -120,9 +130,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ],
-            ),
-          );
-        });
+              );
+            });
+    
   }
 
   void _start() {

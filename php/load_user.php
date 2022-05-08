@@ -18,11 +18,9 @@ if($result ->num_rows >0){
         $list = array();
         $list[user_email] = $row['user_email'];
         $list[name] = $row['name'];
-        $list[phone] = $row['phone'];
+        $list[matric] = $row['matric'];
         $list[score] = $row['score'];
         $list[money]=$row['money'];
-        // $list[ingredient]=$row['Ingredient'];
-        // $list[date]=$row['datareg'];
         array_push($response["user"],$list);
     }
     echo json_encode($response);

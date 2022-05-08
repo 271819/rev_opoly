@@ -3,9 +3,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '/home8/javathre/public_html/s271819/revopoly/php/PHPMailer/Exception.php';
-require '/home8/javathre/public_html/s271819/revopoly/php/PHPMailer/PHPMailer.php';
-require '/home8/javathre/public_html/s271819/revopoly/php/PHPMailer/SMTP.php';
+require '/home8/hubbuddi/public_html/271819/revopoly/php/PHPMailer/Exception.php';
+require '/home8/hubbuddi/public_html/271819/revopoly/php/PHPMailer/PHPMailer.php';
+require '/home8/hubbuddi/public_html/271819/revopoly/php/PHPMailer/SMTP.php';
 
 include_once("dbconnect.php");
 
@@ -27,49 +27,49 @@ if ($conn->query($sqlregister) === TRUE){
 
         
     echo "success";
-    // sendEmail($otp,$user_email);
+    sendEmail($otp,$user_email);
 }else{
     echo "failed";
 }
 
 
-// function sendEmail($otp,$user_email){
-//     $mail = new PHPMailer(true);
-//     $mail->SMTPDebug = 0;                                   //Disable verbose debug output
-//     $mail->isSMTP();                                        //Send using SMTP
-//     $mail->Host       = 'mail.javathree99.com';             //Set the SMTP server to send through
-//     $mail->SMTPAuth   = true;                               //Enable SMTP authentication
-//     $mail->Username   = 'revopoly@javathree99.com';         //SMTP username
-//     $mail->Password   = 'rkBuOnm+.{(b';                     //SMTP password
-//     $mail->SMTPSecure = 'tls';         
-//     $mail->Port       = 587;
+function sendEmail($otp,$user_email){
+    $mail = new PHPMailer(true);
+    $mail->SMTPDebug = 0;                                   //Disable verbose debug output
+    $mail->isSMTP();                                        //Send using SMTP
+    $mail->Host       = 'mail.hubbuddies.com';             //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                               //Enable SMTP authentication
+    $mail->Username   = 'revopoly@hubbuddies.com';         //SMTP username
+    $mail->Password   = 'rkBuOnm+.{(b';                     //SMTP password
+    $mail->SMTPSecure = 'tls';         
+    $mail->Port       = 587;
     
-//     $from = "revopoly@javathree99.com";
-//     $to = $user_email;
-//     $subject = "From REV-OPOLY ON THE GO. Please Verify your account";
-//     $message = 
+    $from = "revopoly@hubbuddies.com";
+    $to = $user_email;
+    $subject = "From REV-OPOLY ON THE GO. Please Verify your account";
+    $message = 
        
-//         "<h1>&emsp;&ensp;Email Confirmation </h1>
-//         <hr>
-//         <h3>
-//         <p>
-//         Hey, You are almost ready to start enjoying REV-OPOLY ON THE GO. 
-//         <p>
-//         Simply click the link below to verify your email. <p>
-//         </h3>
-//         <p><br>
-//         &emsp;&emsp;&emsp;
-//         <a href='https://javathree99.com/s271819/revopoly/php/verify_account.php?email=".$user_email."&key=".$otp."'>
-//         Verify Email Address.
-//         </a>";
+        "<h1>&emsp;&ensp;Email Confirmation </h1>
+        <hr>
+        <h3>
+        <p>
+        Hey, You are almost ready to start enjoying REV-OPOLY ON THE GO. 
+        <p>
+        Simply click the link below to verify your email. <p>
+        </h3>
+        <p><br>
+        &emsp;&emsp;&emsp;
+        <a href='https://hubbuddies.com/271819/revopoly/php/verify_account.php?email=".$user_email."&key=".$otp."'>
+        Verify Email Address.
+        </a>";
 
-//     $mail->setFrom($from,"REV-OPOLY ON THE GO");
-//     $mail->addAddress($to);                                             //Add a recipient
+    $mail->setFrom($from,"REV-OPOLY ON THE GO");
+    $mail->addAddress($to);                                             //Add a recipient
     
-//     //Content
-//     $mail->isHTML(true);                                                //Set email format to HTML
-//     $mail->Subject = $subject;
-//     $mail->Body    = $message;
-//     $mail->send();
-// }
+    //Content
+    $mail->isHTML(true);                                                //Set email format to HTML
+    $mail->Subject = $subject;
+    $mail->Body    = $message;
+    $mail->send();
+}
 ?>

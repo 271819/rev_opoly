@@ -48,7 +48,7 @@ class _PictureDetailsState extends State<PictureDetails> {
                           width: screenWidth / 1.2,
                           child: CachedNetworkImage(
                             imageUrl:
-                                "https://javathree99.com/s271819/revopoly/images/${widget.name}/${i}.png",
+                                "https://hubbuddies.com/271819/revopoly/images/${widget.name}/${i}.png",
                           ),
                         ), 
                          
