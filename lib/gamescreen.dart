@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:cached_network_image/cached_network_image.dart';
@@ -37,7 +38,7 @@ class _GameScreenState extends State<GameScreen> {
   void dice() {
     if (playerturn == true) {
       setState(() {
-        whoturn = true;
+        
         leftdice_no = Random().nextInt(6) + 1;
         rightdice_no = Random().nextInt(6) + 1;
         int x = leftdice_no;
@@ -67,10 +68,10 @@ class _GameScreenState extends State<GameScreen> {
           totalup = 0;
           _updatemoney(2000);
         }
+        whoturn = true;
         playerturn = false;
         botturn = true;
       });
-
       if (totalstep == 1 ||
           totalstep == 3 ||
           totalstep == 6 ||
@@ -714,7 +715,8 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  void irquestion(int totalstep, bool whoturn) {
+  Future<void> irquestion(int totalstep, bool whoturn) async {
+    await Future.delayed(const Duration(seconds:3));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     TextEditingController _iranswer = new TextEditingController();
@@ -755,7 +757,7 @@ class _GameScreenState extends State<GameScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+          // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + text,
                 style: TextStyle(fontSize: 22)),
@@ -815,8 +817,8 @@ class _GameScreenState extends State<GameScreen> {
     } else {
       showDialog(
         context: context,
-        builder: (BuildContext context) {
-          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+        builder: (BuildContext context) {sleep(const Duration(seconds: 5));
+          // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + text,
                 style: TextStyle(fontSize: 22)),
@@ -1488,7 +1490,8 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
-  void didyouknow(int totalstep) {
+  Future<void> didyouknow(int totalstep) async {
+    await Future.delayed(const Duration(seconds:3));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     int image = Random().nextInt(15) + 1;
@@ -1536,7 +1539,8 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  void chance(int totalstep, bool whoturn) {
+  Future<void> chance(int totalstep, bool whoturn) async {
+    await Future.delayed(const Duration(seconds:3));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     int image = Random().nextInt(15) + 1;
@@ -1740,7 +1744,8 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  void inventor3(int totalstep, bool whoturn) {
+  Future<void> inventor3(int totalstep, bool whoturn) async {
+    await Future.delayed(const Duration(seconds:3));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     if (whoturn == true) {
@@ -1756,7 +1761,7 @@ class _GameScreenState extends State<GameScreen> {
                   child: Column(
                     children: [
                       Container(
-                        height: screenHeight / 2.45, //160,
+                        height: screenHeight / 2.6, //160,
                         width: screenWidth / 5.26, //140,
                         decoration: BoxDecoration(
                           image: DecorationImage(
@@ -1801,7 +1806,7 @@ class _GameScreenState extends State<GameScreen> {
                   child: Column(
                     children: [
                       Container(
-                        height: screenHeight / 2.45, //200,
+                        height: screenHeight / 2.6, //160,
                         width: screenWidth / 5.26, //140,
                         decoration: BoxDecoration(
                           image: DecorationImage(
@@ -1835,7 +1840,8 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  void inventor23(int totalstep, bool whoturn) {
+  Future<void> inventor23(int totalstep, bool whoturn) async {
+    await Future.delayed(const Duration(seconds:3));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     if (whoturn == true) {
@@ -1850,7 +1856,7 @@ class _GameScreenState extends State<GameScreen> {
               child: Column(
                 children: [
                   Container(
-                    height: screenHeight / 2.45, //160,
+                    height: screenHeight / 2.6, //160,
                     width: screenWidth / 5.26, //140,
                     decoration: BoxDecoration(
                       image: DecorationImage(
@@ -1893,7 +1899,7 @@ class _GameScreenState extends State<GameScreen> {
               child: Column(
                 children: [
                   Container(
-                    height: screenHeight / 2.45, //160,
+                    height: screenHeight / 2.6, //160,
                     width: screenWidth / 5.26, //140,
                     decoration: BoxDecoration(
                       image: DecorationImage(
@@ -1927,7 +1933,8 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  void technologyquestion(int totalstep, bool whoturn) {
+  Future<void> technologyquestion(int totalstep, bool whoturn) async {
+    await Future.delayed(const Duration(seconds:3));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     TextEditingController _iranswer = new TextEditingController();
@@ -2004,7 +2011,7 @@ class _GameScreenState extends State<GameScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+          // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + technology.toString(),
                 style: TextStyle(fontSize: 22)),
@@ -2064,7 +2071,7 @@ class _GameScreenState extends State<GameScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+          // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + technology.toString(),
                 style: TextStyle(fontSize: 22)),
@@ -2123,8 +2130,7 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  void _technologyAnswer(String answer, int image, int updatemoney,
-      String technology, bool whourn) {
+  void _technologyAnswer(String answer, int image, int updatemoney,String technology, bool whourn) {
     bool trueanswer = true;
     bool falseanswer = false;
     print(answer);
@@ -3037,8 +3043,7 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  void _technologymessage(String ans, bool noanswer, int updatemoney,
-      String technology, bool whoturn) {
+  void _technologymessage(String ans, bool noanswer, int updatemoney,String technology, bool whoturn) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     String title;

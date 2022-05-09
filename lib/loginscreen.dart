@@ -327,7 +327,7 @@ class _LoginScreenState extends State<LoginScreen> {
     prefs = await SharedPreferences.getInstance();
     String _email = prefs.getString("email") ?? '';
     String _password = prefs.getString("password") ?? '';
-    _remember = prefs.getBool("remember") ?? false;
+    _remember = prefs.getBool("rememberme") ?? false;
 
     setState(() {
       _emailController.text = _email;
