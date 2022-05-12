@@ -757,7 +757,7 @@ class _GameScreenState extends State<GameScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + text,
                 style: TextStyle(fontSize: 22)),
@@ -818,7 +818,7 @@ class _GameScreenState extends State<GameScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {sleep(const Duration(seconds: 5));
-          // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + text,
                 style: TextStyle(fontSize: 22)),
@@ -2011,7 +2011,7 @@ class _GameScreenState extends State<GameScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + technology.toString(),
                 style: TextStyle(fontSize: 22)),
@@ -2071,7 +2071,7 @@ class _GameScreenState extends State<GameScreen> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + technology.toString(),
                 style: TextStyle(fontSize: 22)),
