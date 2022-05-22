@@ -20,6 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
       
   }
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
           body: Container(
             constraints: BoxConstraints.expand(),
@@ -39,49 +41,49 @@ class _HomeScreenState extends State<HomeScreen> {
                     child:
                         Image.asset('assets/images/revopoly1.png', scale: 0.5),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: screenHeight/24.57), //30
                   MaterialButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(35),
                         side: BorderSide(color: Colors.red, width: 5)),
-                    minWidth: 240,
-                    height: 55,
+                    minWidth: screenWidth/1.63, //240
+                      height: screenHeight/13.4, //55
                     // color: Colors.black,
                     child: Text(
                       "Start",
-                      style: TextStyle(fontSize: 30, color: Colors.white),
+                      style: TextStyle(fontSize: screenHeight/24.56, color: Colors.white), //30
                     ),
                     onPressed: _start,
                   ),
-                  SizedBox(height: 35),
+                  SizedBox(height: screenHeight/21.05), //35
                   MaterialButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(35),
                         side: BorderSide(color: Colors.red, width: 5)),
-                    minWidth: 240,
-                    height: 55,
+                    minWidth: screenWidth/1.63, //240
+                      height: screenHeight/13.4, //55
                     // color: Colors.black,
                     child: Text(
                       "Profile",
-                      style: TextStyle(fontSize: 30, color: Colors.white),
+                      style: TextStyle(fontSize: screenHeight/24.56, color: Colors.white),//30
                     ),
                     onPressed: _profile,
                   ),
-                  SizedBox(height: 35),
+                  SizedBox(height: screenHeight/21.05), //35
                   MaterialButton(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(35),
-                        side: BorderSide(color: Colors.red, width: 5)),
-                    minWidth: 240,
-                    height: 55,
+                        side: BorderSide(color: Colors.red, width: screenWidth/78.4)),
+                    minWidth: screenWidth/1.63, //240
+                      height: screenHeight/13.4, //55
                     // color: Colors.black,
                     child: Text(
                       "Help",
-                      style: TextStyle(fontSize: 30, color: Colors.white),
+                      style: TextStyle(fontSize: screenHeight/24.56, color: Colors.white),//30
                     ),
                     onPressed: _help,
                   ),
-                  SizedBox(height: 35),
+                  SizedBox(height: screenHeight/21.05), //35
                 ],
               ),
             ),

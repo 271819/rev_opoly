@@ -50,11 +50,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     Text("Login",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 30)),
-                    SizedBox(height: 15),
+                            fontWeight: FontWeight.bold, fontSize: screenHeight/24.56)), //30
+                    SizedBox(height: screenHeight/49.13), //15
                     Container(
                       child: TextField(
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: screenHeight/36.85),//20
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           // fillColor: Colors.grey[300],
@@ -65,15 +65,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           // filled: true,
                           hintText: "Type in your Email",
                           labelText: 'Email',
-                          icon: Icon(Icons.email, size: 30),
+                          icon: Icon(Icons.email, size: screenHeight/24.56),//30
                         ),
                         controller: _emailController,
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: screenHeight/49.13), //15
                     Container(
                       child: TextField(
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: screenHeight/36.85),//20
                         decoration: InputDecoration(
                           fillColor: Colors.grey[300],
                           // border: new OutlineInputBorder(
@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintStyle: new TextStyle(color: Colors.grey[800]),
                           hintText: "Type in your Password",
                           labelText: 'Password',
-                          icon: Icon(Icons.lock, size: 30),
+                          icon: Icon(Icons.lock, size: screenHeight/24.56),//30
                         ),
                         obscureText: true,
                         controller: _passwordController,
@@ -100,21 +100,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Text(
                           "Remember Me",
-                          style: TextStyle(fontSize: 15),
+                          style: TextStyle(fontSize: screenHeight/49.13), //15
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: screenHeight/73.7), //10
                     MaterialButton(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      minWidth: 240,
-                      height: 55,
+                      minWidth: screenWidth/1.63, //240
+                      height: screenHeight/13.4, //55
                       color: Colors.blueAccent,
                       child: Text(
                         "Login",
-                        style: TextStyle(fontSize: 23, color: Colors.white),
+                        style: TextStyle(fontSize: screenHeight/32.04, color: Colors.white), //23
                       ),
                       onPressed: _onlogin,
                     ),
@@ -126,16 +126,16 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Text("Register New Account",
                   style: TextStyle(
                       color: Colors.red,
-                      fontSize: 18,
+                      fontSize: screenHeight/40.94, //18
                       decoration: TextDecoration.underline)),
               onTap: _registernewUser,
             ),
-            SizedBox(height: 6),
+            SizedBox(height: screenHeight/122.83), //6
             GestureDetector(
               child: Text("Forgot Password",
                   style: TextStyle(
                       color: Colors.red,
-                      fontSize: 18,
+                      fontSize: screenHeight/40.94, //18
                       decoration: TextDecoration.underline)),
               onTap: _forgotpassword,
             )
@@ -155,16 +155,18 @@ class _LoginScreenState extends State<LoginScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
         return AlertDialog(
           title: Text("Forgot Your Password?", style: TextStyle(fontSize: 25)),
           content: new Container(
-            height: 150,
+            height: screenHeight/4.91, //150
             child: Column(
               children: [
-                SizedBox(height: 15),
+                SizedBox(height: screenHeight/49.13), //15
                 Text("Enter your recovery email",
-                    style: TextStyle(fontSize: 21)),
-                SizedBox(height: 10),
+                    style: TextStyle(fontSize: screenHeight/49.13)), //15
+                SizedBox(height: screenHeight/73.7),
                 TextField(
                   controller: _newemail,
                   keyboardType: TextInputType.emailAddress,

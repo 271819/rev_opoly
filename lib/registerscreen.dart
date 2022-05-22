@@ -17,6 +17,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _passwordbController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Center(
           child: SingleChildScrollView(
@@ -35,11 +37,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   Text("Register New Account",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight/29.48)),//25
                   // SizedBox(height: 5),
                   Container(
                     child: TextField(
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: screenHeight/41),
                       keyboardType: TextInputType.name,
                       decoration: InputDecoration(
                         // fillColor: Colors.grey[300],
@@ -50,14 +52,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         // filled: true,
                         hintText: "Type in your nickname",
                         labelText: 'Nickname',
-                        icon: Icon(Icons.person, size: 28),
+                        icon: Icon(Icons.person, size: screenHeight/26.32),
                       ),
                       controller: _nameController,
                     ),
                   ),
                   Container(
                     child: TextField(
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: screenHeight/41), //18
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         // fillColor: Colors.grey[300],
@@ -68,7 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         // filled: true,
                         hintText: "Type in your Email",
                         labelText: 'Email',
-                        icon: Icon(Icons.email, size: 25),
+                        icon: Icon(Icons.email, size: screenHeight/29.48),//25
                       ),
                       controller: _emailController,
                     ),
@@ -76,7 +78,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   // SizedBox(height: 5),
                   Container(
                     child: TextField(
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: screenHeight/41),//18
                       decoration: InputDecoration(
                         // fillColor: Colors.grey[300],
                         // border: new OutlineInputBorder(
@@ -87,7 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         hintStyle: new TextStyle(color: Colors.grey[800]),
                         hintText: "Type in your Password",
                         labelText: 'Password',
-                        icon: Icon(Icons.lock, size: 25),
+                        icon: Icon(Icons.lock, size: screenHeight/29.48),//25
                       ),
                       obscureText: _obscureText,
                       controller: _passwordaController,
@@ -96,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   // SizedBox(height: 10),
                   Container(
                     child: TextField(
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: screenHeight/41), //18
                       decoration: InputDecoration(
                         // fillColor: Colors.grey[300],
                         // border: new OutlineInputBorder(
@@ -107,23 +109,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         hintStyle: new TextStyle(color: Colors.grey[800]),
                         hintText: "Type in your Password",
                         labelText: 'Confirm Password',
-                        icon: Icon(Icons.lock, size: 25),
+                        icon: Icon(Icons.lock, size: screenHeight/29.48),//25
                       ),
                       obscureText: _obscureText,
                       controller: _passwordbController,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: screenHeight/24.56),//30
                   MaterialButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    minWidth: 240,
-                    height: 55,
+                    minWidth: screenWidth/1.63,//240
+                    height: screenHeight/13.4,//55,
                     color: Colors.blueAccent,
                     child: Text(
                       "Register",
-                      style: TextStyle(fontSize: 23, color: Colors.white),
+                      style: TextStyle(fontSize: screenHeight/32.04, color: Colors.white), //23
                     ),
                     onPressed: _onRegister,
                   ),
@@ -136,7 +138,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               "Already register?",
               style: TextStyle(
                 color: Colors.red,
-                fontSize: 22,
+                fontSize: screenHeight/33.5,//22
                 decoration: TextDecoration.underline,
               ),
             ),

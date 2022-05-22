@@ -73,8 +73,7 @@ class _ProfileState extends State<Profile> {
                   icon: new Icon(Icons.arrow_back_ios, color: Colors.white),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
-                backgroundColor: Colors.blue
-                    .withOpacity(0.3), //You can make this transparent
+                backgroundColor: Colors.blue.withOpacity(0.3), //You can make this transparent
                 elevation: 0.0, //No shadow
               ),
               Container(
@@ -89,22 +88,6 @@ class _ProfileState extends State<Profile> {
                               child: Container(
                                 height: screenHeight/3.35,//220,
                                 width: screenWidth/1.5,//260, 
-                                // decoration: BoxDecoration(
-                                //   image: DecorationImage(
-                                //     image: _image == null
-                                //         ? AssetImage(pathAsset)
-                                //         : FileImage(_image),
-
-                                //     fit: BoxFit.cover,
-                                //   ),
-                                //   border: Border.all(
-                                //     width: 4.0,
-                                //     color: Colors.black,
-                                //   ),
-                                //   // borderRadius: BorderRadius.circular(20.0),
-                                // ),
-
-
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10.0),
                                   child: widget.user.imgstatus == "no"
@@ -120,10 +103,10 @@ class _ProfileState extends State<Profile> {
                                         ),
                                 ),
                               )),
-                          SizedBox(height: 30),
+                          SizedBox(height: screenHeight/24.57),//30
                           Divider(
                             color: Colors.black,
-                            height: 20,
+                            height: screenHeight/36.85, //20
                             thickness: 5,
                           ),
                           SizedBox(height: screenHeight/24.5), //30
@@ -133,14 +116,14 @@ class _ProfileState extends State<Profile> {
                               children: [
                                 Text("Name: ",
                                     style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: screenHeight/29.48, //25
                                       fontWeight: FontWeight.bold,
                                     )),
                                 Container(
-                                  width: 150,
+                                  width: screenWidth/2.61, //150
                                   child: TextField(
                                     style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 29.48, // 25
                                       fontWeight: FontWeight.bold,
                                     ),
                                     textAlign: TextAlign.center,
@@ -165,7 +148,7 @@ class _ProfileState extends State<Profile> {
                               children: [
                                 Text("Matrix No: ",
                                     style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: screenHeight/29.48, //25
                                       fontWeight: FontWeight.bold,
                                     )),
                                 Container(
@@ -173,7 +156,7 @@ class _ProfileState extends State<Profile> {
                                   child: TextField(
                                     keyboardType: TextInputType.number,
                                     style: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: screenHeight/29.48, //25
                                       fontWeight: FontWeight.bold,
                                     ),
                                     textAlign: TextAlign.center,
@@ -194,7 +177,7 @@ class _ProfileState extends State<Profile> {
                           SizedBox(height: screenHeight/36.85), //20
                           Text("Email:  " + widget.user.email,
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: screenHeight/36.85,//20
                                 fontWeight: FontWeight.bold,
                               )),
                           SizedBox(height: screenHeight/18.4), //40
@@ -208,7 +191,7 @@ class _ProfileState extends State<Profile> {
                             child: Text(
                               "Update Information",
                               style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
+                                  TextStyle(fontSize: screenHeight/36.85, color: Colors.white), //20
                             ),
                             onPressed: _saveChange,
                           ),
