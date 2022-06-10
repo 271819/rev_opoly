@@ -146,7 +146,7 @@ class _ProfileState extends State<Profile> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Matrix No: ",
+                                Text("Matric No: ",
                                     style: TextStyle(
                                       fontSize: screenHeight/29.48, //25
                                       fontWeight: FontWeight.bold,

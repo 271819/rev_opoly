@@ -716,7 +716,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Future<void> irquestion(int totalstep, bool whoturn) async {
-    await Future.delayed(const Duration(seconds:3));
+    await Future.delayed(const Duration(seconds:2));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     TextEditingController _iranswer = new TextEditingController();
@@ -798,7 +798,7 @@ class _GameScreenState extends State<GameScreen> {
                   Navigator.of(context).pop();
                   _irAnswer(_iranswer.text.toString(), image, updatemoney, text,
                       whoturn);
-                  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
+                  // SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                 },
               ),
               TextButton(
@@ -1491,7 +1491,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Future<void> didyouknow(int totalstep) async {
-    await Future.delayed(const Duration(seconds:3));
+    await Future.delayed(const Duration(seconds:2));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     int image = Random().nextInt(15) + 1;
@@ -1540,7 +1540,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Future<void> chance(int totalstep, bool whoturn) async {
-    await Future.delayed(const Duration(seconds:3));
+    await Future.delayed(const Duration(seconds:2));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     int image = Random().nextInt(15) + 1;
@@ -1745,7 +1745,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Future<void> inventor3(int totalstep, bool whoturn) async {
-    await Future.delayed(const Duration(seconds:3));
+    await Future.delayed(const Duration(seconds:2));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     if (whoturn == true) {
@@ -1841,7 +1841,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Future<void> inventor23(int totalstep, bool whoturn) async {
-    await Future.delayed(const Duration(seconds:3));
+    await Future.delayed(const Duration(seconds:2));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     if (whoturn == true) {
@@ -1934,7 +1934,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Future<void> technologyquestion(int totalstep, bool whoturn) async {
-    await Future.delayed(const Duration(seconds:3));
+    await Future.delayed(const Duration(seconds:2));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     TextEditingController _iranswer = new TextEditingController();

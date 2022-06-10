@@ -37,7 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   Text("Register New Account",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight/29.48)),//25
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: screenHeight/30.48)),//25
                   // SizedBox(height: 5),
                   Container(
                     child: TextField(
@@ -135,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           GestureDetector(
             child: Text(
-              "Already register?",
+              "Already registered?",
               style: TextStyle(
                 color: Colors.red,
                 fontSize: screenHeight/33.5,//22
