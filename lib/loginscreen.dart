@@ -40,7 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
                 child: Image.asset('assets/images/revopoly1.png', scale: 0.5)),
             Card(
-              elevation: 20,
+              elevation: 30,
+              shadowColor: Colors.blue,
               // color: Colors.lightGreenAccent[400],
               // color: Colors/,
               margin: EdgeInsets.fromLTRB(30, 0, 30, 15),

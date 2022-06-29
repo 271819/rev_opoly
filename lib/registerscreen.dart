@@ -29,7 +29,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Image.asset('assets/images/revopoly1.png', scale: 0.9)),
           Card(
             // color: Colors.lightGreenAccent[400],
-            elevation: 20,
+           elevation: 30,
+              shadowColor: Colors.blue,
             margin: EdgeInsets.fromLTRB(30, 0, 30, 15),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(15, 20, 15, 20),
