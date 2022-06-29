@@ -798,7 +798,7 @@ class _GameScreenState extends State<GameScreen> {
                   Navigator.of(context).pop();
                   _irAnswer(_iranswer.text.toString(), image, updatemoney, text,
                       whoturn);
-                  // SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
+                  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
                 },
               ),
               TextButton(
@@ -817,7 +817,7 @@ class _GameScreenState extends State<GameScreen> {
     } else {
       showDialog(
         context: context,
-        builder: (BuildContext context) {sleep(const Duration(seconds: 5));
+        builder: (BuildContext context) {
           SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
           return AlertDialog(
             title: Text("This Question is for " + text,
@@ -1438,6 +1438,7 @@ class _GameScreenState extends State<GameScreen> {
                             [DeviceOrientation.landscapeLeft]);
                       }),
                 ],
+                backgroundColor:Colors.pink[200],
               );
             });
       },
@@ -3080,6 +3081,7 @@ class _GameScreenState extends State<GameScreen> {
                             [DeviceOrientation.landscapeLeft]);
                       }),
                 ],
+                backgroundColor:Colors.pink[200],
               );
             });
       },
@@ -3323,6 +3325,7 @@ class _GameScreenState extends State<GameScreen> {
                     ]);
                   }),
             ],
+            backgroundColor: Colors.greenAccent,
           );
         });
   }
@@ -3346,6 +3349,7 @@ class _GameScreenState extends State<GameScreen> {
             "https://hubbuddies.com/271819/revopoly/php/check_technology.php"),
         body: {
           "technology": checktechnology,
+          "email":widget.user.email,
         }).then((response) {
       if (response.body == "nodata") {
         print("new technology");
@@ -3554,9 +3558,9 @@ class _GameScreenState extends State<GameScreen> {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage("assets/images/congrats.gif"),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                       colorFilter: ColorFilter.mode(
-                          Colors.black.withOpacity(0.9), BlendMode.dstATop)),
+                          Colors.black.withOpacity(0.77), BlendMode.dstATop)),
                 ),
                 child: SingleChildScrollView(
                   child: Row(children: [

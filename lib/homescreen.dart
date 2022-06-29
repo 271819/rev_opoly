@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 image: AssetImage("assets/images/sky.jpg"),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(1), BlendMode.dstATop),
+                    Colors.black.withOpacity(0.94), BlendMode.dstATop),
               ),
             ),
             child: SingleChildScrollView(
@@ -135,6 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ],
+              backgroundColor:Colors.lightGreenAccent,
               );
             });
     
