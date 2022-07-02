@@ -119,7 +119,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
                                     icon: const Icon(Icons.delete),
                                     color: Colors.red,
                                     onPressed: () {
-                                      _deleteuserdialog(userlist[index]['name']);
+                                      _deleteuserdialog(userlist[index]['name'],userlist[index]['user_email']);
                                     },
                                   ),
                                 ],
@@ -160,7 +160,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
     });
   }
 
-  void _deleteuserdialog(String name) {
+  void _deleteuserdialog(String name,String email) {
      showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -185,7 +185,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
               child: Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
-                _deleteUser(name);
+                _deleteUser(name,email);
               },
             ),
             TextButton(
@@ -199,7 +199,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
     );
   }
 
-  Future<void> _deleteUser(String name) async {
+  Future<void> _deleteUser(String name,String email) async {
     pr = ProgressDialog(context,
         type: ProgressDialogType.Normal, isDismissible: true, showLogs: true);
     await pr.show();
@@ -208,7 +208,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
             "https://hubbuddies.com/271819/revopoly/php/delete_user.php"),
         body: {
           'name': name,
-          'email':widget.user.email,
+          'email':email,
         }).then((response) {
       if (response.body == "success") {
         Fluttertoast.showToast(
