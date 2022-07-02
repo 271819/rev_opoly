@@ -208,6 +208,7 @@ class _ManageUserScreenState extends State<ManageUserScreen> {
             "https://hubbuddies.com/271819/revopoly/php/delete_user.php"),
         body: {
           'name': name,
+          'email':widget.user.email,
         }).then((response) {
       if (response.body == "success") {
         Fluttertoast.showToast(

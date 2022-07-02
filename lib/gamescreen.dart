@@ -3199,6 +3199,7 @@ class _GameScreenState extends State<GameScreen> {
                   Navigator.of(context).pop();
                 }),
           ],
+          backgroundColor: Colors.red,
         );
       },
     );
@@ -3242,6 +3243,7 @@ class _GameScreenState extends State<GameScreen> {
                   Navigator.of(context).pop();
                 }),
           ],
+          backgroundColor: Colors.grey,
         );
       },
     );
